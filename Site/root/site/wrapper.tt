@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html  xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>z00Gm4.n34</title>
+<link rel="stylesheet" type="text/css" href="/static/css/base.css" />
+</head>
+<body>
+<div id="container">
+  <div id="topbar">
+    <div id="navbar">
+      <a href="[%c.uri_for('band')%]">Band</a>
+      <a href="">Shows</a>
+      <a href="">News</a>
+      <a href="">Gallery</a>
+      <a href="">Music</a>
+      <a href="">Store</a>
+      <a href="">Contact</a>
+    </div>
+  </div>
+  <div id="main">
+    <div id="column_left">
+      [% FOREACH stop IN shows %]
+        <div>[% stop.date %]</div>
+        <div>[% stop.venue %]</div>
+        <div>[% stop.city %]</div>
+      [% END %]
+    </div>
+    <div id="column_main">
+      [%~ content ~%]
+    </div>
+    <!-- Don't remove spacer div. Solve an issue about container height -->
+    <div class="spacer"></div>
+  </div>
+  <div id="footer">This is my footer</div>
+  </div>
+</body>
+</html>
