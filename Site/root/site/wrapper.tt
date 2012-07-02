@@ -6,6 +6,7 @@
 </head>
 <body>
 <div id="container">
+ <!-- 
   <div id="topbar">
     <div id="navbar">
       <a href="[%c.uri_for('band')%]">Band</a>
@@ -15,6 +16,26 @@
       <a href="">Music</a>
       <a href="">Store</a>
       <a href="">Contact</a>
+    </div>
+  </div>
+  -->
+  <div id="header">
+    <div id="header-logo"></div>
+    <div id="header-nav">
+      <div id="header-nav-left"></div>
+      <div id="header-nav-main">
+        <ul>
+          <li id="nav-home-link"></li>
+          <li id="nav-band-link"></li>
+          <li id="nav-shows-link"></li>
+          <li id="nav-news-link"></li>
+          <li id="nav-gallery-link"></li>
+          <li id="nav-music-link"></li>
+          <li id="nav-store-link"></li>
+          <li id="nav-contact-link"></li>
+        </ul>
+      </div>
+      <div id="header-nav-right"></div>
     </div>
   </div>
   <div id="main">
