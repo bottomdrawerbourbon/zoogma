@@ -1,0 +1,83 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html  xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>zoogma.net</title>
+<link rel="stylesheet" type="text/css" href="/static/css/base.css" />
+<link rel="stylesheet" type="text/css" href="/static/css/jplayer.css" />
+<script type="text/javascript" src="/static/js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="/static/js/jQuery.jPlayer.2.1.0/jquery.jplayer.min.js"></script>
+<script>
+
+    $(document).ready(function() { 
+        $("#jquery_jplayer_1").jPlayer( {
+            ready: function () {
+                $(this).jPlayer("setMedia", {
+                    mp3: "/static/mp3/Daybroke.mp3" // Defines the mp3 url
+                });
+            }, 
+            swfPath: "/static/js/jQuery.jPlayer.2.1.0/Jplayer.swf",
+            supplied: "mp3"
+        }); 
+    });
+
+</script>
+</head>
+<body>
+<div id="container">
+  <div id="header">
+    <div id="header-logo"></div>
+    <div id="header-nav">
+
+      <div id="header-nav-left"></div>
+
+      <div id="header-nav-main">
+        <ul>
+          <li id="nav-home-link"></li>
+          <li id="nav-band-link"></li>
+          <li id="nav-shows-link"></li>
+          <li id="nav-news-link"></li>
+          <li id="nav-gallery-link"></li>
+          <li id="nav-music-link"></li>
+          <li id="nav-store-link"></li>
+          <li id="nav-contact-link"></li>
+        </ul>
+      </div>
+      <div id="header-nav-right"></div>
+    </div>
+  </div>
+  <div id="main">
+
+    <div id="column_left">
+      [% FOREACH stop IN shows %]
+        <div>[% stop.date %]</div>
+        <div>[% stop.venue %]</div>
+        <div>[% stop.city %]</div>
+      [% END %]
+    </div>
+    <div id="column_main">
+
+      <div id="jquery_jplayer_1" class="jp-jplayer"></div>
+        <div class="jp-audio">
+          <div class="jp-type-single">
+            <div id="jp_interface_1" class="jp-interface">
+              <ul class="jp-controls">
+                <li><a href="javascript:;" class="jp-play" tabindex="1">play</a></li>
+                <li><a href="javascript:;" class="jp-pause" tabindex="1">pause</a></li> 
+                <li><a href="javascript:;" class="jp-mute" tabindex="1">mute</a></li> 
+                <li><a href="javascript:;" class="jp-unmute" tabindex="1">unmute</a></li>
+              </ul>
+            </div>
+            <div id="jp_playlist_1" class="jp-playlist"></div>
+          </div>
+        </div>
+      </div>
+
+      [%~ content ~%]
+    </div>
+    <!-- Don't remove spacer div. Solve an issue about container height -->
+    <div class="spacer"></div>
+  </div>
+  <div id="footer">This is my footer</div>
+  </div>
+</body>
+</html>

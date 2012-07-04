@@ -146,8 +146,8 @@ PAGE STRUCTURE
   width:100%; 
   display:block; 
 }
-#column_left{
-  width:130px; 
+#tour-dates-col{
+  width:200px; 
   margin-right:10px; 
   margin-left:160px; 
   background-color: #e8e8e8;
