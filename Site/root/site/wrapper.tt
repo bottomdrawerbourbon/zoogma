@@ -114,13 +114,19 @@ $(document).ready(function(){
 
   <div id="main">
 
-    <div id="tour-dates-col">
+    <div id="tourdates">
+      <div id="tourdates-header"></div>
+      <div id="tourdates-body"></div>
+    </div>
+    <!--
+    <div id="column_left">
       [% FOREACH stop IN shows %]
         <div>[% stop.date %]</div>
         <div>[% stop.venue %]</div>
         <div>[% stop.city %]</div>
       [% END %]
     </div>
+    -->
     <div id="column_main">
 
       [%~ content ~%]

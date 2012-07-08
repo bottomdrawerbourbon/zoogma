@@ -31,7 +31,9 @@ PAGE STRUCTURE
 /* #container has an absolute width (780 pixel) */
 
 #container{width:100%; min-height:100%; margin-bottom:-30px; position:relative;}
-/*#topbar{background: black url(/static/images/header.png) center no-repeat;width:auto; display:block; height:265px; background-color:#000000;}i */
+/* ------------------------------
+HEADER
+------------------------------ */
 #header{
   background: url(/static/images/header_bg.png) no-repeat left top;
   height: 265px;
@@ -47,6 +49,7 @@ PAGE STRUCTURE
   top: 10px;
   left: 156px;
 }
+/*** Header Nav ***/
 #header-nav{
   width: 1300px;
   height: 63px;
@@ -149,6 +152,36 @@ PAGE STRUCTURE
 #header-nav #header-nav-main ul li#nav-contact-link:hover{
   background:url(/static/images/nav_sprites.png) 91px 47px;
 } 
+/*** End Header Nav ***/
+/* ------------------------------
+END HEADER
+------------------------------ */
+
+/*** Player ***/
+.jp-audio{
+  margin-left: auto;
+  margin-right: auto;
+}
+/*** End Player ***/
+
+/*** Tour Dates ***/
+#tourdates{
+  background-color: white;
+  position: relative;
+  left: 163px;
+  top: -2px;
+  height: 400px;
+  width: 227px;
+}
+#tourdates-header{
+  width: 231px;
+  height: 156px;
+  position: absolute;
+  margin-top: -60px;
+  margin-left: -7px;
+  background:url(/static/images/tourdates_header.png) 0 0;
+}
+/*** End Tour Dates ***/
 #navbar{width:auto; display:block; height:28px;}
 #navbar a{heigth:28px; line-height:28px; padding:0 8px; display:inline;}
 
