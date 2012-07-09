@@ -15,22 +15,34 @@
 
 <![endif]-->
 
+<!-- Stylesheet includes -->
 <link rel="stylesheet" type="text/css" href="/static/css/base.css" />
 <link rel="stylesheet" type="text/css" href="/static/css/jplayer.blue.monday.css" />
+
+<!-- Javascript includes -->
 <script type="text/javascript" src="/static/js/jquery-1.7.2.min.js"></script>
 <script type="text/javascript" src="/static/js/jQuery.jPlayer.2.1.0/jquery.jplayer.min.js"></script>
+<script type="text/javascript" src="/static/js/lib/jquery.nicescroll.min.js"></script>
 <script type="text/javascript">
 
 $(document).ready(function(){
 
-    $("#jquery_jplayer_1").jPlayer({
-        ready: function (event) {
-            $(this).jPlayer("setMedia", {
-                mp3: "/static/mp3/Daybroke.mp3" // Defines the mp3 url
-            });
-        },
-        supplied: "mp3",
-    });
+  // Setup music player
+  $("#jquery_jplayer_1").jPlayer({
+    ready: function (event) {
+      $(this).jPlayer("setMedia", {
+        mp3: "/static/mp3/Daybroke.mp3" // Defines the mp3 url
+      });
+    },
+    supplied: "mp3",
+  });
+
+  // Setup scrollbars
+  $('#tourdates-content').niceScroll({
+    autohidemode: false,
+    disableoutline: true,
+    preservenativescrolling: true
+  });
 
 });
 </script>
@@ -117,16 +129,54 @@ $(document).ready(function(){
     <div id="tourdates">
       <div id="tourdates-header"></div>
       <div id="tourdates-body"></div>
+      <div id="tourdates-content">
+        <ol>
+          [% FOREACH stop IN shows %]
+          <li class="tourdate">
+            <span class="tourdate-info tourdate-date">[% stop.date %]</span>
+            <span class="tourdate-info tourdate-venue">[% stop.venue %]</span>
+            <span class="tourdate-info tourdate-city_state">[% stop.city %]</span>
+          </li>
+          [% END %]
+          <!-- tourdates are repeated for filler -->
+          [% FOREACH stop IN shows %]
+          <li class="tourdate">
+            <span class="tourdate-info tourdate-date">[% stop.date %]</span>
+            <span class="tourdate-info tourdate-venue">[% stop.venue %]</span>
+            <span class="tourdate-info tourdate-city_state">[% stop.city %]</span>
+          </li>
+          [% END %]
+          [% FOREACH stop IN shows %]
+          <li class="tourdate">
+            <span class="tourdate-info tourdate-date">[% stop.date %]</span>
+            <span class="tourdate-info tourdate-venue">[% stop.venue %]</span>
+            <span class="tourdate-info tourdate-city_state">[% stop.city %]</span>
+          </li>
+          [% END %]
+          [% FOREACH stop IN shows %]
+          <li class="tourdate">
+            <span class="tourdate-info tourdate-date">[% stop.date %]</span>
+            <span class="tourdate-info tourdate-venue">[% stop.venue %]</span>
+            <span class="tourdate-info tourdate-city_state">[% stop.city %]</span>
+          </li>
+          [% END %]
+          [% FOREACH stop IN shows %]
+          <li class="tourdate">
+            <span class="tourdate-info tourdate-date">[% stop.date %]</span>
+            <span class="tourdate-info tourdate-venue">[% stop.venue %]</span>
+            <span class="tourdate-info tourdate-city_state">[% stop.city %]</span>
+          </li>
+          [% END %]
+          [% FOREACH stop IN shows %]
+          <li class="tourdate">
+            <span class="tourdate-info tourdate-date">[% stop.date %]</span>
+            <span class="tourdate-info tourdate-venue">[% stop.venue %]</span>
+            <span class="tourdate-info tourdate-city_state">[% stop.city %]</span>
+          </li>
+          [% END %]
+        </ol>
+      </div>
     </div>
-    <!--
-    <div id="column_left">
-      [% FOREACH stop IN shows %]
-        <div>[% stop.date %]</div>
-        <div>[% stop.venue %]</div>
-        <div>[% stop.city %]</div>
-      [% END %]
-    </div>
-    -->
     <div id="column_main">
 
       [%~ content ~%]
