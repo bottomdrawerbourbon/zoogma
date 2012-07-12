@@ -20,63 +20,44 @@ Site::Controller::Root - Root Controller for Site
 
 =head1 METHODS
 
-=head2 default
-
-Standard 404 error page
+=head2 auto
 
 =cut
+sub begin :Private {
+    my ($self, $c) = @_;
 
-sub default :Path {
-    my ( $self, $c ) = @_;
-    $c->response->body( 'Page not found' );
-    $c->response->status(404);
+    $c->stash->{shows} = [];
+#    # Get all the current shows
+    my $showsRs = $c->model('MyModel::TourDate')->search;
+    while( my $show = $showsRs->next ) {
+        my $day = $show->date->day;
+        # Doesn't look like DateTiem will give me a suffix so figure it out myself
+        my $date_suffix = ($day == 1 ? 'st' : ($day == 2 ? 'nd' : ($day == 3 ? 'rd' : 'th')));
+        push( @{$c->stash->{shows}}, {
+            date  => $show->date->strftime("%a.%b.%d$date_suffix.%Y"),
+            venue => $show->venue,
+            city  => $show->city,
+            state => 'TN'
+       });
+    }
 }
-
 =head2 index
 
 The root page (/)
 
 =cut
-
 sub index :Path :Args(0) {
     my ( $self, $c ) = @_;
-
-    $c->stash->{shows} = $c->model('Shows')->get_current_shows;
-    $c->stash->{template} = 'default.tt';
+    $c->forward('home/index');
 }
 
+=head2 default
 
-
-sub band :Path {
+=cut
+sub default :Path {
     my ( $self, $c ) = @_;
-    $c->stash->{template} = 'band/default.tt';
+    $c->forward('home/index');
 }
-
-sub shows :Path {
-    my ( $self, $c ) = @_;
-    $c->stash->{template} = 'shows/default.tt';
-}
-
-sub news :Path {
-    my ( $self, $c ) = @_;
-    $c->stash->{template} = 'news/default.tt';
-}
-
-sub gallery :Path {
-    my ( $self, $c ) = @_;
-    $c->stash->{template} = 'gallery/default.tt';
-}
-
-sub music :Path {
-    my ( $self, $c ) = @_;
-    $c->stash->{template} = 'music/default.tt';
-}
-
-sub contact :Path {
-    my ( $self, $c ) = @_;
-    $c->stash->{template} = 'contact/default.tt';
-}
-
 
 =head2 end
 

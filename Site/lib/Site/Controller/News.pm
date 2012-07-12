@@ -2,43 +2,32 @@ package Site::Controller::News;
 use Moose;
 use namespace::autoclean;
 
-BEGIN { extends 'Catalyst::Controller' }
-
-#
-# Sets the actions in this controller to be registered with no prefix
-# so they function identically to actions created in MyApp.pm
-#
-__PACKAGE__->config(namespace => '');
+BEGIN {extends 'Catalyst::Controller'; }
 
 =head1 NAME
 
-Site::Controller::Root - Root Controller for Site
+Site::Controller::News - Catalyst Controller
 
 =head1 DESCRIPTION
 
-[enter your description here]
+Catalyst Controller.
 
 =head1 METHODS
 
-=head2 index
+=cut
 
-The root page (/)
+
+=head2 index
 
 =cut
 
 sub index :Path :Args(0) {
     my ( $self, $c ) = @_;
 
-    $c->stash->{template} = 'news/show.tt';
+    # Fetch the features for the homepage...
+    $c->stash->{news} = $c->model('MyModel::News')->search({id => 1});
 }
 
-=head2 end
-
-Attempt to render a view, if needed.
-
-=cut
-
-sub end : ActionClass('RenderView') {}
 
 =head1 AUTHOR
 

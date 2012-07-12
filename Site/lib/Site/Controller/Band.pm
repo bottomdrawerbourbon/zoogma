@@ -2,43 +2,31 @@ package Site::Controller::Band;
 use Moose;
 use namespace::autoclean;
 
-BEGIN { extends 'Catalyst::Controller' }
-
-#
-# Sets the actions in this controller to be registered with no prefix
-# so they function identically to actions created in MyApp.pm
-#
-__PACKAGE__->config(namespace => 'band');
+BEGIN {extends 'Catalyst::Controller'; }
 
 =head1 NAME
 
-Site::Controller::Root - Root Controller for Site
+Site::Controller::Band - Catalyst Controller
 
 =head1 DESCRIPTION
 
-[enter your description here]
+Catalyst Controller.
 
 =head1 METHODS
 
+=cut
+
+
 =head2 index
 
-The root page (/)
-
 =cut
 
-sub default :Private  {
+sub index :Path :Args(0) {
     my ( $self, $c ) = @_;
 
-    $c->stash->{template} = 'band/show.tt';
+    $c->stash->{current_view} = 'JSON';
 }
 
-=head2 end
-
-Attempt to render a view, if needed.
-
-=cut
-
-sub end : ActionClass('RenderView') {}
 
 =head1 AUTHOR
 

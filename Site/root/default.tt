@@ -1,1 +1,17 @@
-<div>HERE WE ARE</div>
+  <div id="sliderHolder">
+    <div id="features">
+        <img src="static/images/feature/campbiscoheader.jpg" />
+        <span>
+          <b>Title Goes Here</b><br />
+          Something else goes here...
+        </span>
+
+        <img src="static/images/feature/campbiscoheader.jpg" />
+        <span>
+          <b>Title Goes Here</b><br />
+          Something else goes here...
+        </span>
+
+    </div>
+  </div>
+

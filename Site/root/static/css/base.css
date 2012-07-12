@@ -35,13 +35,13 @@ PAGE STRUCTURE
 HEADER
 ------------------------------ */
 #header{
-  background: url(/static/images/header_bg.png) no-repeat left top;
+  background: url(/static/images/header_bg2.png) no-repeat left top;
   height: 265px;
   min-width: 1300px;
   margin: 0 auto;
 }
 #header-logo{
-  background: url(/static/images/logo_white.png) repeat-x left top;
+  background: url(/static/images/zoogma_logo2.png) repeat-x left top;
   height: 230px;
   width: 395px;
   z-index: 200;
@@ -193,6 +193,7 @@ END HEADER
   top: -2px;
   height: 400px;
   width: 227px;
+  float: left;
 }
 #tourdates-header{
   width: 231px;
@@ -236,8 +237,17 @@ END HEADER
   background-color: #e8e8e8;
   float:left;
 }
-#column_main{width:160px; margin-right:20px; float:left;}
+#column_main{
+    width:160px; 
+    margin-right:20px; 
+    float:left;
+    position: relative;
+    width: 160px;
+    left: 180px;
+}
 div.spacer{clear:both; height:30px; display:block;}
+
+#sliderHolder { padding: 5px; margin-top: -50px; width: 700px; }
 
 /*#footer{width:100%; display:block; padding:10px 0; font-size:11px; background-color:#161b1f;height:30px;position:relative; background-color:#161b1f;}*/
 #footer { position:absolute;bottom:0;width:100%;height:60px;background:#161b1f;}
