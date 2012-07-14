@@ -1,0 +1,55 @@
+.sc-artwork-list { 
+  display: none;
+}
+
+.sc-info {
+  display: none;
+}
+
+.sc-trackslist {
+  display: none;
+}
+
+.sc-scrubber {
+  display: none;
+}
+
+.sc-player a {
+  text-decoration: none;
+  color: #333;
+}
+
+.sc-player .sc-controls a {
+  height: 100px;
+  color: transparent;
+}
+
+.sc-player.playing .sc-controls a.sc-play{
+  display: none;
+  }
+
+.sc-player.playing .sc-controls a.sc-pause{
+  display: block;
+}
+
+.sc-player .hidden {
+  display: none;
+}
+
+.sc-player .sc-controls a.sc-play {
+  background:url(/static/images/play.png);
+  position: absolute; 
+  height: 60px;
+  width: 66px;
+  left: 160px;
+  top: -2px;
+}
+
+.sc-player .sc-controls a.sc-pause{
+  background:url(/static/images/pause.png);
+  position: absolute; 
+  height: 60px;
+  width: 66px;
+  left: 160px;
+  top: -2px;
+}

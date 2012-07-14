@@ -37,8 +37,8 @@ HEADER
 #header{
   background: url(/static/images/header_bg2.png) no-repeat left top;
   height: 265px;
-  min-width: 1300px;
   margin: 0 auto;
+  background-size: 100%;
 }
 #header-logo{
   background: url(/static/images/zoogma_logo2.png) repeat-x left top;
@@ -156,6 +156,47 @@ HEADER
 /* ------------------------------
 END HEADER
 ------------------------------ */
+#social-buttons {
+  height: 30px;
+  top:  -145px;
+  right: 240px;
+  position: relative;
+  float: right;
+  z-index: 100;
+
+}
+#social-buttons ul li{
+  float: right;
+  margin-right: 15px;
+}
+
+#social-buttons ul li#social-fb{
+  background:url(/static/images/facebook.png);
+  width:29px;
+  height:28px;
+  text-indent:-9009px;
+}
+#social-buttons ul li#social-tw{
+  background:url(/static/images/twitter.png);
+  width:29px;
+  height:28px;
+}
+#social-buttons ul li#social-gp{
+  background:url(/static/images/googleplus.png);
+  width:29px;
+  height:28px;
+}
+#social-buttons ul li#social-sc{
+  background:url(/static/images/soundcloud.png);
+  width:29px;
+  height:28px;
+}
+#social-buttons ul li#sc-player{
+  background:url(/static/images/player_bg.png);
+  width:364px;
+  height:28px;
+  right: 50px;
+}
 
 /*** Player ***/
 .jp-audio{

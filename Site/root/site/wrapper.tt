@@ -18,11 +18,16 @@
 <!-- Stylesheet includes -->
 <link rel="stylesheet" type="text/css" href="/static/css/base.css" />
 <link rel="stylesheet" type="text/css" href="/static/css/coin-slider-styles.css" />
+<link rel="stylesheet" type="text/css" href="/static/css/sc-player-standard.css" />
 
 <!-- Javascript includes -->
-<script type="text/javascript" src="/static/js/jquery-1.7.2.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript"></script>
 <script type="text/javascript" src="/static/js/coin-slider/coin-slider.min.js"></script>
 <script type="text/javascript" src="/static/js/lib/jquery.nicescroll.min.js"></script>
+
+<script type="text/javascript" src="/static/js/sc/soundcloud.player.api.js"></script>
+<script type="text/javascript" src="/static/js/sc/sc-player.js"></script>
+
 <script type="text/javascript">
 
 $(document).ready(function(){
@@ -39,21 +44,106 @@ $(document).ready(function(){
         hoverPause: false,
         width: 700
     });
-
-    $('#nav-band-link').click(function() {
-        //$('#column_main').load('/band');
-        $.getJSON('/band', function(result) {
-
-            $('#column_main').fadeOut('fast', function() {
-                // Animation complete.
-            });
-
+    $('#nav-home-link').click(function() {
+        $.getJSON('/home', function(result) {
+            replaceMainContent( formatHomeContent(result) );
         });
-
         return false;
     });
 
+    $('#nav-band-link').click(function() {
+        $.getJSON('/band', function(result) {
+            replaceMainContent( formatBandContent(result) );
+        });
+        return false;
+    });
+
+    $('#nav-shows-link').click(function() {
+        $.getJSON('/shows', function(result) {
+            replaceMainContent( formatShowsContent(result) );
+        });
+        return false;
+    });
+
+    $('#nav-news-link').click(function() {
+        $.getJSON('/news', function(result) {
+            replaceMainContent( formatNewsContent(result) );
+        });
+        return false;
+    });
+
+    $('#nav-gallery-link').click(function() {
+        $.getJSON('/gallery', function(result) {
+            replaceMainContent( formatGalleryContent(result) );
+        });
+        return false;
+    });
+
+    $('#nav-music-link').click(function() {
+        $.getJSON('/music', function(result) {
+            replaceMainContent( formatMusicContent(result) );
+        });
+        return false;
+    });
+
+    $('#nav-store-link').click(function() {
+        $.getJSON('/store', function(result) {
+            replaceMainContent( formatStoreContent(result) );
+        });
+        return false;
+    });
+
+    $('#nav-contact-link').click(function() {
+        $.getJSON('/contact', function(result) {
+            replaceMainContent( formatContactContent(result) );
+        });
+        return false;
+    });
 });
+
+function replaceMainContent(innerContent) {
+    $('#column_main').fadeOut('slow', function() {
+        // Animation complete.
+        // Start the new column_main element
+        var content = "<div id='column_main'>";
+    
+        content += innerContent;
+
+        // Closing out the column_main element
+        content += "</div>";
+
+        $('#column_main').replaceWith(content);
+
+        $('#column_main').fadeIn('slow', function() {
+            // Animation complete.
+        });
+    });
+
+}
+function formatBandContent(jsonData) {
+    return "<div stlye='background=red'>HERE WE ARE</div>";
+}
+function formatBandContent(jsonData) {
+    return "<div stlye='background=red'>HERE WE ARE</div>";
+}
+function formatShowsContent(jsonData) {
+    return "<div stlye='background=red'>HERE WE ARE</div>";
+}
+function formatNewsContent(jsonData) {
+    return "<div stlye='background=red'>HERE WE ARE</div>";
+}
+function formatGalleryContent(jsonData) {
+    return "<div stlye='background=red'>HERE WE ARE</div>";
+}
+function formatMusicContent(jsonData) {
+    return "<div stlye='background=red'>HERE WE ARE</div>";
+}
+function formatStoreContent(jsonData) {
+    return "<div stlye='background=red'>HERE WE ARE</div>";
+}
+function formatContactContent(jsonData) {
+    return "<div stlye='background=red'>HERE WE ARE</div>";
+}
 </script>
 
 </head>
@@ -81,6 +171,16 @@ $(document).ready(function(){
         </ul>
       </div>
       <div id="header-nav-right"></div>
+    </div>
+
+    <div id="social-buttons">
+      <ul>
+        <li id="social-sc"><a href="http://soundcloud.com/zoogma"></a></li>
+        <li id="social-gp"><a href="http://www.facebook.com/zoogmaband"></a></li>
+        <li id="social-tw"><a href="http://twitter.com/zoogma"></a></li>
+        <li id="social-fb"><a href="http://www.facebook.com/zoogmaband"></a></li>
+        <li id="sc-player"><a href="http://soundcloud.com/zoogma" class="sc-player">My latest tracks</a></li>
+      </ul>
     </div>
 
   </div>

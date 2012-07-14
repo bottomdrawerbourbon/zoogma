@@ -6,7 +6,7 @@ BEGIN {extends 'Catalyst::Controller'; }
 
 =head1 NAME
 
-Site::Controller::News - Catalyst Controller
+Site::Controller::Band - Catalyst Controller
 
 =head1 DESCRIPTION
 
@@ -24,8 +24,7 @@ Catalyst Controller.
 sub index :Path :Args(0) {
     my ( $self, $c ) = @_;
 
-    # Fetch the features for the homepage...
-    $c->stash->{news} = $c->model('MyModel::News')->search({id => 1});
+    $c->stash->{current_view} = 'JSON';
 }
 
 
