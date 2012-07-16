@@ -59,7 +59,6 @@ __PACKAGE__->table("news");
 
 =head2 copy
 
-  accessor: 'column_copy'
   data_type: 'text'
   is_nullable: 1
 
@@ -77,8 +76,8 @@ __PACKAGE__->add_columns(
   { data_type => "varchar", is_nullable => 1, size => 255 },
   "title",
   { data_type => "varchar", is_nullable => 1, size => 255 },
-  "copy",
-  { accessor => "column_copy", data_type => "text", is_nullable => 1 },
+  "story",
+  { data_type => "text", is_nullable => 1 },
 );
 
 =head1 PRIMARY KEY

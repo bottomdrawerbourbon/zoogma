@@ -1,17 +1,9 @@
   <div id="sliderHolder">
     <div id="features">
-        <img src="static/images/feature/campbiscoheader.jpg" />
-        <span>
-          <b>Title Goes Here</b><br />
-          Something else goes here...
+        <img class="slider-image" src="static/images/feature/campbiscoheader.jpg" />
+        <span class="slider-title">
+          <b>Zoogma to play this years camp bisco</b>
         </span>
-
-        <img src="static/images/feature/campbiscoheader.jpg" />
-        <span>
-          <b>Title Goes Here</b><br />
-          Something else goes here...
-        </span>
-
     </div>
   </div>
 

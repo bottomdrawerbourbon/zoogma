@@ -13,6 +13,7 @@ sub process {
     $c->response->headers->header('Content-Type' => 'application/json');
 
     my $data = $c->stash->{data};
+    use Data::Dumper; warn Dumper($data);
     my $output;
     eval {
         my $encoder = JSON::XS->new->pretty(1)->convert_blessed(1);
@@ -28,6 +29,7 @@ sub process {
         $output = $c->stash->{do_jsonp} . "($output);";
     }
 
+    use Data::Dumper; warn Dumper($output);
     $c->response->body( $output );
     return 1;  # important
 }

@@ -3,7 +3,7 @@
 }
 
 .sc-info {
-  display: none;
+  /*display: none;*/
 }
 
 .sc-trackslist {
@@ -42,7 +42,7 @@
   height: 60px;
   width: 66px;
   left: 160px;
-  top: -2px;
+  top: 4px;
 }
 
 .sc-player .sc-controls a.sc-pause{
@@ -51,5 +51,32 @@
   height: 60px;
   width: 66px;
   left: 160px;
-  top: -2px;
+  top: 4px;
+}
+
+.sc-player .sc-info h4,p { display: none;}
+.sc-player .sc-info .sc-info-close { display: none;}
+.sc-player .sc-info-toggle { display: none;}
+
+.sc-player .sc-info h3 {
+  font-family: 'Iceberg', cursive;
+  background:url(/static/images/track_bg.png);
+  background-repeat: no-repeat;
+  display: block;
+  position: absolute; 
+  height: 10px;
+  width: 150px;
+  left: 260px;
+  top: 22px;
+  border: none;
+  font-size: 9px;
+}
+
+.sc-player .sc-info h3 a {
+  color: #D8D4D4;
+  text-align: center;
+  margin-left: 5px;
+  text-transform: uppercase;
+  width: 98%;
+  height: 98%;
 }

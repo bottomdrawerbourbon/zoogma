@@ -4,6 +4,8 @@ HTML Redefine Tags
 html{height:100%;}
 body{height:100%;font-family:Arial, Helvetica, sans-serif; font-size:12px; margin:0px; padding:0; background-color:#000000; }
 
+@import url(http://fonts.googleapis.com/css?family=Iceberg);
+
 input, form, textarea
 h1, h2, h3, h4, h5, h6{margin:0; padding:0;}
 h1{font-size:18px;}
@@ -158,7 +160,7 @@ END HEADER
 ------------------------------ */
 #social-buttons {
   height: 30px;
-  top:  -145px;
+  top:  -135px;
   right: 240px;
   position: relative;
   float: right;
@@ -175,26 +177,34 @@ END HEADER
   width:29px;
   height:28px;
   text-indent:-9009px;
+  margin-top: 7px;
+  cursor: pointer;
 }
 #social-buttons ul li#social-tw{
   background:url(/static/images/twitter.png);
   width:29px;
   height:28px;
+  margin-top: 7px;
+  cursor: pointer;
 }
 #social-buttons ul li#social-gp{
   background:url(/static/images/googleplus.png);
   width:29px;
   height:28px;
+  margin-top: 7px;
+  cursor: pointer;
 }
 #social-buttons ul li#social-sc{
   background:url(/static/images/soundcloud.png);
   width:29px;
   height:28px;
+  margin-top: 7px;
+  cursor: pointer;
 }
 #social-buttons ul li#sc-player{
-  background:url(/static/images/player_bg.png);
+  background:url(/static/images/player_bg.png) no-repeat;
   width:364px;
-  height:28px;
+  height:45px;
   right: 50px;
 }
 
@@ -231,18 +241,18 @@ END HEADER
   background-color: white;
   position: relative;
   left: 163px;
-  top: -2px;
+  top: -28px;
   height: 400px;
-  width: 227px;
+  width: 226px;
   float: left;
 }
 #tourdates-header{
   width: 231px;
-  height: 156px;
+  height: 168px;
   position: absolute;
-  margin-top: -60px;
-  margin-left: -7px;
-  background:url(/static/images/tourdates_header.png) 0 0;
+  margin-top: -75px;
+  margin-left: -5px;
+  background:url(/static/images/tourdates_header2.png);
 }
 #tourdates-content{
   position: relative;
@@ -264,6 +274,55 @@ END HEADER
   display: block;
 }
 /*** End Tour Dates ***/
+/*** Band Page ***/
+#band-info{
+  background-color: #FFFFFF;
+  padding: 5px; 
+  margin-top: -50px; 
+  width: 700px;
+}
+
+#band-info img {
+  display:block; /*images must be set to block in order use auto margins*/
+  margin-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#band-bio {
+  padding: 20px;
+  margin-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#band-bio p {
+  display: block;
+}
+/** END BAND PAGE **/
+
+/** BEGIN NEWS PAGE **/
+#news-main{
+  background-color: #FFFFFF;
+  padding: 5px; 
+  margin-top: -50px; 
+  width: 700px;
+}
+
+#news-heading {
+
+}
+
+#news-content {
+
+}
+
+#news-content p {
+  display: block;
+}
+
+/** END NEWS PAGE **/
+
 #navbar{width:auto; display:block; height:28px;}
 #navbar a{heigth:28px; line-height:28px; padding:0 8px; display:inline;}
 
@@ -291,7 +350,7 @@ div.spacer{clear:both; height:30px; display:block;}
 #sliderHolder { padding: 5px; margin-top: -50px; width: 700px; }
 
 /*#footer{width:100%; display:block; padding:10px 0; font-size:11px; background-color:#161b1f;height:30px;position:relative; background-color:#161b1f;}*/
-#footer { position:absolute;bottom:0;width:100%;height:60px;background:#161b1f;}
+#footer { bottom:0;width:100%;height:30px;background:#161b1f; margin-top:50px; text-align: center;}
 
 /* ------------------------------
 CUSTOM CLASSES

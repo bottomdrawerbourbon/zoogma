@@ -240,7 +240,7 @@
 				'left'		: 0,
 				'z-index' 	: 1001,
 				'line-height': '30px',
-				'opacity'	: params[el.id].opacity
+				'opacity'	: 0.7
 			}).click( function(e){
 				e.preventDefault();
 				$.transition(el,'prev');
@@ -253,7 +253,7 @@
 				'right'		: 0,
 				'z-index' 	: 1001,
 				'line-height': '30px',
-				'opacity'	: params[el.id].opacity
+				'opacity'	: 0.7
 			}).click( function(e){
 				e.preventDefault();
 				$.transition(el);
@@ -284,9 +284,7 @@
 			});						
 
 			$("#cs-buttons-"+el.id).css({
-				'left'			: '50%',
 				'margin-left' 	: -images[el.id].length*15/2-5,
-				'position'		: 'relative'
 				
 			});
 			
@@ -470,7 +468,7 @@
 	// default values
 	$.fn.coinslider.defaults = {	
 		width: 565, // width of slider panel
-		height: 290, // height of slider panel
+		height: 270, // height of slider panel
 		spw: 7, // squares per width
 		sph: 5, // squares per height
 		delay: 3000, // delay between images in ms
@@ -478,7 +476,7 @@
 		opacity: 0.7, // opacity of title and navigation
 		titleSpeed: 500, // speed of title appereance in ms
 		effect: '', // random, swirl, rain, straight
-		navigation: false, // prev next and buttons
+		navigation: true, // prev next and buttons
 		links : true, // show images as links 
 		hoverPause: true // pause on hover		
 	};	

@@ -27,6 +27,19 @@ sub index :Path :Args(0) {
     $c->stash->{current_view} = 'JSON';
 }
 
+sub json :Local {
+    my ( $self, $c ) = @_;
+    $c->stash->{current_view} = 'JSON';
+    my $newsRs = $c->model('MyModel::News')->search();
+
+    my @data;
+    while( my $news = $newsRs->next ) {
+        push @data, {title => $news->title, story => $news->story };
+    }
+    
+    $c->stash->{data}->{news} = \@data;
+}
+
 
 =head1 AUTHOR
 

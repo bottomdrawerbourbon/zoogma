@@ -31,6 +31,13 @@ sub index :Path :Args(0) {
     $c->stash->{current_view} = 'TT';
 }
 
+sub json :Local {
+    my ( $self, $c ) = @_;
+    $c->stash->{current_view} = 'JSON';
+    $c->stash->{features} = $c->model('MyModel::Feature')->search({id => 1});
+
+}
+
 sub end : ActionClass('RenderView') {}
 
 =head1 AUTHOR
