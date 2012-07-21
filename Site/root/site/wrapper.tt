@@ -235,6 +235,7 @@ function formatContactContent(jsonData) {
         </ul>
       </div>
       <div id="header-nav-right"></div>
+      <div id="header-nav-right-filler"></div>
     </div>
 
     <div id="social-buttons">
