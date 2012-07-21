@@ -221,7 +221,7 @@ END HEADER
   background-color: #d0d0d0;
   width: 5px !important;
   border-radius: 23px;
-  height: 281px !important;
+  height: 375px !important;
 }
 #ascrail2000 div{
   background:url(/static/images/slider_icon.png) 0 0;
@@ -256,15 +256,15 @@ END HEADER
 }
 #tourdates-content{
   position: relative;
-  top: 100px;
-  height: 286px;
+  top: 15px;
+  height: 375px;
   overflow: auto;
 }
 #tourdates-content #jspPane{
- height: 286px !important;
+ height: 375px !important;
 }
 #tourdates-content ol{
-  height: 286px !important;
+  height: 375px !important;
 }
 .tourdate{
   width: 160px;
