@@ -238,13 +238,14 @@ function formatContactContent(jsonData) {
       <div id="header-nav-right-filler"></div>
     </div>
 
+    <div id="sc-player"><a href="http://soundcloud.com/zoogma" class="sc-player">My latest tracks</a></div>
+
     <div id="social-buttons">
       <ul>
         <li id="social-sc"><a href="http://soundcloud.com/zoogma"></a></li>
         <li id="social-gp"><a href="http://www.facebook.com/zoogmaband"></a></li>
         <li id="social-tw"><a href="http://twitter.com/zoogma"></a></li>
         <li id="social-fb"><a href="http://www.facebook.com/zoogmaband"></a></li>
-        <li id="sc-player"><a href="http://soundcloud.com/zoogma" class="sc-player">My latest tracks</a></li>
       </ul>
     </div>
 
