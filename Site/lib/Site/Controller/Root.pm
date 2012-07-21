@@ -32,7 +32,7 @@ sub begin :Private {
     while( my $show = $showsRs->next ) {
         my $day = $show->date->day;
         # Doesn't look like DateTiem will give me a suffix so figure it out myself
-        my $date_suffix = ($day == 1 ? 'st' : ($day == 2 ? 'nd' : ($day == 3 ? 'rd' : 'th')));
+        my $date_suffix = '<sup>' . ($day == 1 ? 'st' : ($day == 2 ? 'nd' : ($day == 3 ? 'rd' : 'th'))) . '</sup>';
         push( @{$c->stash->{shows}}, {
             date  => $show->date->strftime("%a.%b.%d$date_suffix.%Y"),
             venue => $show->venue,

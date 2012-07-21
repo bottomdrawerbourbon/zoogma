@@ -1,8 +1,20 @@
 /* ------------------------------
 HTML Redefine Tags
 ------------------------------ */
+@font-face 
+{
+  font-family: "343";
+  src: url('/static/fonts/343.ttf');
+}
+@font-face 
+{
+  font-family: "343";
+  src: url('/static/fonts/343.eot');
+}
+
+
 html{height:100%;}
-body{height:100%;font-family:Arial, Helvetica, sans-serif; font-size:12px; margin:0px; padding:0; background-color:#000000; }
+body{height:100%; font-family: '343'; font-size:12px; margin:0px; padding:0; background-color:#000000; }
 
 @import url(http://fonts.googleapis.com/css?family=Iceberg);
 
