@@ -217,38 +217,41 @@ function formatContactContent(jsonData) {
 <div id="container">
   <!-- begin header -->
   <div id="header">
-    <div id="header-logo"></div>
-    <div id="header-nav">
+    <div id="header-filler-left"></div>
+    <div id="header-main">
+      <div id="header-logo"></div>
+      <div id="header-nav">
 
-      <div id="header-nav-left"></div>
+        <div id="header-nav-left"></div>
 
-      <div id="header-nav-main">
+        <div id="header-nav-main">
+          <ul>
+            <li id="nav-home-link"></li>
+            <li id="nav-band-link"></li>
+            <li id="nav-shows-link"></li>
+            <li id="nav-news-link"></li>
+            <li id="nav-gallery-link"></li>
+            <li id="nav-music-link"></li>
+            <li id="nav-store-link"></li>
+            <li id="nav-contact-link"></li>
+          </ul>
+        </div>
+        <div id="header-nav-right"></div>
+        <div id="header-nav-right-filler" style="display:none;"></div>
+      </div>
+
+      <div id="sc-player"><a href="http://soundcloud.com/zoogma" class="sc-player">My latest tracks</a></div>
+
+      <div id="social-buttons">
         <ul>
-          <li id="nav-home-link"></li>
-          <li id="nav-band-link"></li>
-          <li id="nav-shows-link"></li>
-          <li id="nav-news-link"></li>
-          <li id="nav-gallery-link"></li>
-          <li id="nav-music-link"></li>
-          <li id="nav-store-link"></li>
-          <li id="nav-contact-link"></li>
+          <li id="social-sc"><a href="http://soundcloud.com/zoogma"></a></li>
+          <li id="social-gp"><a href="http://www.facebook.com/zoogmaband"></a></li>
+          <li id="social-tw"><a href="http://twitter.com/zoogma"></a></li>
+          <li id="social-fb"><a href="http://www.facebook.com/zoogmaband"></a></li>
         </ul>
       </div>
-      <div id="header-nav-right"></div>
-      <div id="header-nav-right-filler"></div>
-    </div>
-
-    <div id="sc-player"><a href="http://soundcloud.com/zoogma" class="sc-player">My latest tracks</a></div>
-
-    <div id="social-buttons">
-      <ul>
-        <li id="social-sc"><a href="http://soundcloud.com/zoogma"></a></li>
-        <li id="social-gp"><a href="http://www.facebook.com/zoogmaband"></a></li>
-        <li id="social-tw"><a href="http://twitter.com/zoogma"></a></li>
-        <li id="social-fb"><a href="http://www.facebook.com/zoogmaband"></a></li>
-      </ul>
-    </div>
-
+    </div> <!-- end header main -->
+    <div id="header-filler-right"></div>
   </div>
   <!-- End Header -->
 
