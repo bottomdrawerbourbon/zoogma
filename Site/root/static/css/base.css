@@ -1,8 +1,20 @@
 /* ------------------------------
 HTML Redefine Tags
 ------------------------------ */
+@font-face 
+{
+  font-family: "343";
+  src: url('/static/fonts/343.ttf');
+}
+@font-face 
+{
+  font-family: "343";
+  src: url('/static/fonts/343.eot');
+}
+
+
 html{height:100%;}
-body{height:100%;font-family:Arial, Helvetica, sans-serif; font-size:12px; margin:0px; padding:0; background-color:#000000; }
+body{height:100%; font-family: '343'; font-size:12px; margin:0px; padding:0; background-color:#000000; }
 
 @import url(http://fonts.googleapis.com/css?family=Iceberg);
 
@@ -221,7 +233,8 @@ END HEADER
   background-color: #d0d0d0;
   width: 5px !important;
   border-radius: 23px;
-  height: 375px !important;
+  height: 397px !important;
+  top: 362px !important;
 }
 #ascrail2000 div{
   background:url(/static/images/slider_icon.png) 0 0;
@@ -242,7 +255,7 @@ END HEADER
   position: relative;
   left: 163px;
   top: -28px;
-  height: 400px;
+  height: 500px;
   width: 226px;
   float: left;
 }
@@ -257,8 +270,9 @@ END HEADER
 #tourdates-content{
   position: relative;
   top: 15px;
-  height: 375px;
+  height: 400px;
   overflow: auto;
+  top: 85px;
 }
 #tourdates-content #jspPane{
  height: 375px !important;
