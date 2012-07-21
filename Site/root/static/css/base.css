@@ -44,7 +44,7 @@ PAGE STRUCTURE
 
 /* #container has an absolute width (780 pixel) */
 
-#container{width:100%; min-height:100%; margin-bottom:-30px; position:relative;}
+#container{width:100%; min-height:100%; margin-bottom:-30px; position:relative; overflow-x:hidden;}
 /* ------------------------------
 HEADER
 ------------------------------ */
