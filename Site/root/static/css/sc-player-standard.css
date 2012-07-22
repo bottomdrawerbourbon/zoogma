@@ -55,25 +55,21 @@
 }
 
 .sc-player .sc-controls a.sc-prev{
-/*
-  background:url(/static/images/pause.png);
+  background:url(/static/images/prev.png);
   position: absolute; 
-  height: 60px;
-  width: 66px;
-  left: 160px;
-  top: 4px;
-  */
+  height: 8px;
+  width: 15px;
+  left: 95px;
+  top: 15px;
 }
 
 .sc-player .sc-controls a.sc-next{
-/*
-  background:url(/static/images/pause.png);
+  background:url(/static/images/next.png);
   position: absolute; 
-  height: 60px;
-  width: 66px;
-  left: 160px;
-  top: 4px;
-  */
+  height: 8px;
+  width: 15px;
+  left: 195px;
+  top: 15px;
 }
 
 .sc-player .sc-info h4,p { display: none;}
