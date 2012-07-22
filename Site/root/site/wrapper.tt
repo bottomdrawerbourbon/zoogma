@@ -33,7 +33,53 @@
 
 <script type="text/javascript">
 
+var setupAudioPlayer = function(){
+ 
+  // Create player
+  $('#audio-player #player').scPlayer({
+    links: [{url: "http://soundcloud.com/zoogma", title: "Zoogma's SoundCloud"}]
+  });
+
+  // Create next/prev buttons
+  $('.sc-player .sc-controls').prepend('<a href="#prev" class="sc-prev">Previous</a>');
+  $('.sc-player .sc-controls').append('<a href="#next" class="sc-next">Next</a>');
+
+  // Functionality to execute once player loads
+  $(document).bind('onPlayerInit.scPlayer', function(event){
+
+    // Get a reference to the tracklist
+    var tracklist = $('.sc-trackslist');
+
+    // Bind prev functionality
+    $('.sc-prev').click(function(){
+      var cur_active = tracklist.find('.active');
+      var new_active = cur_active.prev();
+      if(new_active.length == 0){
+        new_active = tracklist.find('li').last();
+      }
+      cur_active.removeClass('active');
+      new_active.addClass('active').trigger('click'); 
+      $('.sc-play').trigger('click');
+    });
+
+    // Bind next functionality
+    $('.sc-next').click(function(){
+      var cur_active = tracklist.find('.active');
+      var new_active = cur_active.next();
+      if(new_active.length == 0){
+        new_active = tracklist.find('li').first();
+      }
+      cur_active.removeClass('active');
+      new_active.addClass('active').trigger('click'); 
+      $('.sc-play').trigger('click');
+    });
+  });
+
+};
+
 $(document).ready(function(){
+    // Setup audio player
+    setupAudioPlayer();
 
     // Setup scrollbars
     $('#tourdates-content').niceScroll({
@@ -239,9 +285,12 @@ function formatContactContent(jsonData) {
         <div id="header-nav-right"></div>
         <div id="header-nav-right-filler" style="display:none;"></div>
       </div>
-
-      <div id="sc-player"><a href="http://soundcloud.com/zoogma" class="sc-player">My latest tracks</a></div>
-
+<!--
+      <div id="sc-player"><a href="http://soundcloud.com/zoogma" class="non-sc-player">My latest tracks</a></div>
+-->
+<div id="audio-player">
+  <div id="player"></div>
+</div>
       <div id="social-buttons">
         <ul>
           <li id="social-sc"><a href="http://soundcloud.com/zoogma"></a></li>

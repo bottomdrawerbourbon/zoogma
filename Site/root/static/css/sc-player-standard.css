@@ -54,6 +54,28 @@
   top: 4px;
 }
 
+.sc-player .sc-controls a.sc-prev{
+/*
+  background:url(/static/images/pause.png);
+  position: absolute; 
+  height: 60px;
+  width: 66px;
+  left: 160px;
+  top: 4px;
+  */
+}
+
+.sc-player .sc-controls a.sc-next{
+/*
+  background:url(/static/images/pause.png);
+  position: absolute; 
+  height: 60px;
+  width: 66px;
+  left: 160px;
+  top: 4px;
+  */
+}
+
 .sc-player .sc-info h4,p { display: none;}
 .sc-player .sc-info .sc-info-close { display: none;}
 .sc-player .sc-info-toggle { display: none;}

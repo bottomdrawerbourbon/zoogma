@@ -233,7 +233,7 @@ END HEADER
   margin-left: auto;
   margin-right: auto;
 }
-#sc-player{
+#audio-player{
   background:url(/static/images/player_bg.png) no-repeat;
   width:364px;
   height:45px;
@@ -242,11 +242,11 @@ END HEADER
   /*margin-right: auto;*/
   top: -127px;
 }
-#sc-player .sc-player .sc-controls a.sc-play, #sc-player .sc-player .sc-controls a.sc-pause{
+#audio-player .sc-player .sc-controls a.sc-play, #sc-player .sc-player .sc-controls a.sc-pause{
   left: 120px;
   top: -8px
 }
-#sc-player .sc-player .sc-info h3{
+#audio-player .sc-player .sc-info h3{
   left: 217px;
   top: 11px;
   
