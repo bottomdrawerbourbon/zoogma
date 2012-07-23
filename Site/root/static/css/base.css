@@ -389,6 +389,7 @@ END HEADER
 div.spacer{clear:both; height:30px; display:block;}
 
 #sliderHolder { padding: 5px; margin-top: -103px; width: 700px; }
+#cs-content-features {top: 120px !important; color: white;}
 
 /*#footer{width:100%; display:block; padding:10px 0; font-size:11px; background-color:#161b1f;height:30px;position:relative; background-color:#161b1f;}*/
 #footer { bottom:0;width:100%;height:30px;background:#161b1f; margin-top:50px; text-align: center;}

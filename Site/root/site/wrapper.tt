@@ -202,7 +202,7 @@ function replaceMainContent(innerContent) {
 }
 function formatHomeContent(jsonData) {
     alert("HERE");
-    return '<div id="sliderHolder"> <div id="features"> <img class="slider-image" src="static/images/feature/campbiscoheader.jpg" /> <span class="slider-title"> <b>Zoogma to play this years camp bisco</b> </span> </div> </div>';
+    return '<div id="sliderHolder"> <div id="features"> <img class="slider-image" src="static/images/feature/campbiscoheader.jpg" /> <span class="slider-title"> <b>Zoogma to play this years camp bisco</b> </span> <div class="slider-content">Look at me!!!</div></div> </div>';
 
 }
 function formatBandContent(jsonData) {
