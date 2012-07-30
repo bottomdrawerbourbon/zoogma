@@ -55,7 +55,7 @@ HEADER
   background-size: 100%;
 }
 #header-logo{
-  background: url(/static/images/zoogma_logo2.png) repeat-x left top;
+  background: url(/static/images/zoogma_logo2.png) no-repeat left top;
   height: 230px;
   width: 390px;
   z-index: 200;
@@ -249,6 +249,8 @@ END HEADER
 #audio-player .sc-player .sc-info h3{
   left: 217px;
   top: 11px;
+  height: 7px;
+  overflow: hidden;
   
 }
 /*** End Player ***/
