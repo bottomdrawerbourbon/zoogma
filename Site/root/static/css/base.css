@@ -263,6 +263,7 @@ END HEADER
   border-radius: 23px;
   height: 397px !important;
   top: 362px !important;
+  z-index: 1001 !important;
 }
 #ascrail2000 div{
   background:url(/static/images/slider_icon.png) 0 0;
@@ -365,6 +366,23 @@ END HEADER
 }
 
 /** END NEWS PAGE **/
+/** GALLERY PAGE **/
+#gallery{
+  width: 100%;
+  margin-top: -95px;
+}
+a.gallery-image-link{
+  display: inline-block;
+  margin-bottom: 4px;
+  margin-left: 4px;
+  margin-right: 4px;
+}
+a img.gallery-image{
+  display: inline-block;
+  max-width: 200px;
+  max-height: 100px;
+}
+/** END GALLERY PAGE **/
 
 #navbar{width:auto; display:block; height:28px;}
 #navbar a{heigth:28px; line-height:28px; padding:0 8px; display:inline;}
@@ -381,12 +399,14 @@ END HEADER
   float:left;
 }
 #column_main{
-    width:160px; 
+    width:760px; 
     margin-right:20px; 
     float:left;
     position: relative;
-    width: 160px;
     left: 180px;
+}
+#column_main h2{
+  margin-bottom: 7px;
 }
 div.spacer{clear:both; height:30px; display:block;}
 
