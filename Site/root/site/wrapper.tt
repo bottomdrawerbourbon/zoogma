@@ -114,7 +114,7 @@ $(document).ready(function(){
         return false;
     });
 
-
+/*
     $('#nav-home-link').click(function() {
         $.getJSON('/home/json', function(result) {
             replaceMainContent( formatHomeContent(result) );
@@ -131,7 +131,9 @@ $(document).ready(function(){
         });
         return false;
     });
+    */
     // Nav links
+    $('#nav-home-link').click(function(){ window.location = '#/home'; });
     $('#nav-band-link').click(function(){ window.location = '#/band'; });
     $('#nav-shows-link').click(function(){ window.location = '#/shows'; });
     $('#nav-news-link').click(function(){ window.location = '#/news'; });
@@ -230,7 +232,7 @@ function formatHomeContent(jsonData) {
     </div>
     <div id="column_main">
 
-      [%~ content ~%]
+      [%~ #content ~%]
     </div>
     <!-- Don't remove spacer div. Solve an issue about container height -->
     <div class="spacer"></div>

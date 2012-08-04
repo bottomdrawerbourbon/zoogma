@@ -6,12 +6,13 @@ var page_change = function(innerContent) {
   $('#column_main').fadeOut('slow', function() {
       // Animation complete.
       // Start the new column_main element
-      var content = "<div id='column_main'>";
+      console.log(innerContent);
+      var content = jQuery("<div id='column_main' />").append(innerContent);
   
-      content += innerContent;
+      //content += innerContent;
 
       // Closing out the column_main element
-      content += "</div>";
+      //content += "</div>";
 
       $('#column_main').replaceWith(content);
 
@@ -34,6 +35,18 @@ function set_page_background(){
 }
 
 ////////// Controller Functions //////////
+var home_controller = function(){
+    var new_content = jQuery('<div id="sliderHolder"> <div id="features"> <img class="slider-image" src="static/images/feature/campbiscoheader.jpg" /> <span class="slider-title"> <b>Zoogma to play this years camp bisco</b> </span> <div class="slider-content">Look at me!!!</div></div> </div>');
+    new_content.coinslider({ 
+        hoverPause: false,
+        width: 700,
+        opacity: 1,
+        delay: 10000
+    });
+    page_change(new_content);
+
+  };
+
 var news_controller = function(){
   $.getJSON('/news/json', function(result) { 
     var newContent = "<div id='news-main'>" +
@@ -67,6 +80,10 @@ var gallery_controller = function(){
 };
 
 ////////// Routing //////////
+/* Home */
+Path.map("#/home").to(function(){
+  home_controller();
+}).enter(set_page_background);
 /* News */
 Path.map("#/news").to(function(){
   news_controller();
@@ -89,7 +106,7 @@ Path.map("#/gallery").to(function(){
 Path.map("#/shows").to(function(){ page_change('<div style="color:white;">Contact</div>'); }).enter(set_page_background);
 
 ////////// Setup //////////
-Path.root("#/blah");
+Path.root("#/home");
 Path.rescue(not_found);
 
 $(document).ready(function(){
