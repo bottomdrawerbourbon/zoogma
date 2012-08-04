@@ -6,20 +6,15 @@ var page_change = function(innerContent, callback) {
   $('#column_main').fadeOut('slow', function() {
       // Animation complete.
       // Start the new column_main element
-      console.log(innerContent);
       var content = jQuery("<div id='column_main' />").append(innerContent);
   
-      //content += innerContent;
-
-      // Closing out the column_main element
-      //content += "</div>";
-
       $('#column_main').replaceWith(content);
 
       $('#column_main').fadeIn('slow', function() {
           // Animation complete.
       });
 
+      // If callback given, execute now
       if(callback){
         callback();
       }
@@ -79,32 +74,29 @@ var gallery_controller = function(){
 
   var gallery = jQuery('<div id="gallery" />');
   // Get Facebook photo data
-  // /* should use:https://graph.facebook.com/zoogmaband/albums */
+  // /* for albums: https://graph.facebook.com/zoogmaband/albums */
   $.getJSON("https://graph.facebook.com/zoogmaband/photos", function(data){
-    console.log(data);
-    var photoArr = [];
     if(data.data){
-      photoArr = data.data;
+      var photoArr = data.data;
       _(photoArr).each(function(photoObj, photoObjIdx, origPhotoArr){
         if(photoObj.images.length > 0){
-          //photoElm = jQuery('<div class="photo_album" id="fb_'+albumObj.id+'"/>');
-          //album_cover = jQuery('<img id="photo_album_cover" src="'+albumObj.source+'" width="'+albumObj.width+'" height="'+albumObj.height+'" />');
-          //album.append(album_cover);
-          //_(albumObj.images).each(function(imageObj, imageObjIdx, imageArr){
-          //<a href="images/image-1.jpg" rel="lightbox" title="my caption">image #1</a>
-           photoElm = $('<a class="fancybox" rel="group" href="'+photoObj.images[0].source+'"><img src="'+photoObj.images[7].source+'" alt="" /></a>');
-          //});
+           photoElm = $('<a class="gallery-image-link" rel="group" href="'+photoObj.images[0].source+'"><img class="gallery-image" src="'+photoObj.images[7].source+'" alt="" /></a>');
           gallery.append(photoElm); 
           
         }
       });
-
+      gallery.prepend('<h2>Gallery</h2>');
     }
-    page_change(gallery, function(){ $(".fancybox").fancybox(); });
+    page_change(gallery, function(){
+      $(".gallery-image-link").fancybox({
+        openEffect: "none",
+        closeEffect: "none",
+        nextEffect: "none",
+        prevEffect: "none"
+      });
+    });
   });
 
-  // Write to page
-  //page_change('<div style="color:white;">Gallery</div>'); 
 };
 
 ////////// Routing //////////
