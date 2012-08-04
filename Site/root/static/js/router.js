@@ -2,7 +2,7 @@
 
 ////////// Helper Functions //////////
 /* Page Change */
-var page_change = function(innerContent) {
+var page_change = function(innerContent, callback) {
   $('#column_main').fadeOut('slow', function() {
       // Animation complete.
       // Start the new column_main element
@@ -19,6 +19,10 @@ var page_change = function(innerContent) {
       $('#column_main').fadeIn('slow', function() {
           // Animation complete.
       });
+
+      if(callback){
+        callback();
+      }
   });
 
 };
@@ -72,11 +76,35 @@ var band_controller = function(){
 };
 
 var gallery_controller = function(){
+
+  var gallery = jQuery('<div id="gallery" />');
   // Get Facebook photo data
-  $.getJSON("https://graph.facebook.com/zoogmaband/photos", function(data){console.log(data);});
+  // /* should use:https://graph.facebook.com/zoogmaband/albums */
+  $.getJSON("https://graph.facebook.com/zoogmaband/photos", function(data){
+    console.log(data);
+    var photoArr = [];
+    if(data.data){
+      photoArr = data.data;
+      _(photoArr).each(function(photoObj, photoObjIdx, origPhotoArr){
+        if(photoObj.images.length > 0){
+          //photoElm = jQuery('<div class="photo_album" id="fb_'+albumObj.id+'"/>');
+          //album_cover = jQuery('<img id="photo_album_cover" src="'+albumObj.source+'" width="'+albumObj.width+'" height="'+albumObj.height+'" />');
+          //album.append(album_cover);
+          //_(albumObj.images).each(function(imageObj, imageObjIdx, imageArr){
+          //<a href="images/image-1.jpg" rel="lightbox" title="my caption">image #1</a>
+           photoElm = $('<a class="fancybox" rel="group" href="'+photoObj.images[0].source+'"><img src="'+photoObj.images[7].source+'" alt="" /></a>');
+          //});
+          gallery.append(photoElm); 
+          
+        }
+      });
+
+    }
+    page_change(gallery, function(){ $(".fancybox").fancybox(); });
+  });
 
   // Write to page
-  page_change('<div style="color:white;">Gallery</div>'); 
+  //page_change('<div style="color:white;">Gallery</div>'); 
 };
 
 ////////// Routing //////////

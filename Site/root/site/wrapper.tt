@@ -19,18 +19,26 @@
 <link rel="stylesheet" type="text/css" href="/static/css/base.css" />
 <link rel="stylesheet" type="text/css" href="/static/css/coin-slider-styles.css" />
 <link rel="stylesheet" type="text/css" href="/static/css/sc-player-standard.css" />
+<link rel="stylesheet" href="/static/js/lib/fancybox/source/jquery.fancybox.css?v=2.0.6" type="text/css" media="screen" />
+<link rel="stylesheet" href="/static/js/lib/fancybox/source/helpers/jquery.fancybox-buttons.css?v=1.0.2" type="text/css" media="screen" />
+<link rel="stylesheet" href="/static/js/lib/fancybox/source/helpers/jquery.fancybox-thumbs.css?v=2.0.6" type="text/css" media="screen" />
 
 <link href='http://fonts.googleapis.com/css?family=Iceberg' rel='stylesheet' type='text/css'>
 <link href='http://fonts.googleapis.com/css?family=Rokkitt' rel='stylesheet' type='text/css'>
 
 <!-- Javascript includes -->
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript"></script>
+<script type="text/javascript" src="/static/js/lib/underscore.js"></script>
 <script type="text/javascript" src="/static/js/lib/path.min.js"></script>
 <script type="text/javascript" src="/static/js/router.js"></script>
 <script type="text/javascript" src="/static/js/coin-slider/coin-slider.js"></script>
 <script type="text/javascript" src="/static/js/lib/jquery.nicescroll.min.js"></script>
 <script type="text/javascript" src="/static/js/sc/soundcloud.player.api.js"></script>
 <script type="text/javascript" src="/static/js/sc/sc-player.js"></script>
+<script type="text/javascript" src="/static/js/lib/fancybox/source/jquery.fancybox.pack.js?v=2.0.6"></script>
+<script type="text/javascript" src="/static/js/lib/fancybox/source/helpers/jquery.fancybox-buttons.js?v=1.0.2"></script>
+<script type="text/javascript" src="/static/js/lib/fancybox/source/helpers/jquery.fancybox-media.js?v=1.0.0"></script>
+<script type="text/javascript" src="/static/js/lib/fancybox/source/helpers/jquery.fancybox-thumbs.js?v=2.0.6"></script>
 
 <script type="text/javascript">
 
