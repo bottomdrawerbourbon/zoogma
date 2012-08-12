@@ -22,7 +22,6 @@
 	var appInterval = new Array;	
 	var squarePos	= new Array;	
 	var reverse		= new Array;
-  var content   = new Array;
 	
 	$.fn.coinslider= $.fn.CoinSlider = function(options){
 		
@@ -36,7 +35,6 @@
 			imagePos[el.id]		= 0;
 			squarePos[el.id]	= 0;
 			reverse[el.id]		= 1;						
-      content[el.id]    = new Array();
 				
 			params[el.id] = $.extend({}, $.fn.coinslider.defaults, options);
 						
@@ -46,11 +44,8 @@
 				links[el.id][i] 		= $(item).parent().is('a') ? $(item).parent().attr('href') : '';
 				linksTarget[el.id][i] 	= $(item).parent().is('a') ? $(item).parent().attr('target') : '';
 				titles[el.id][i] 		= $(item).next().is('span') ? $(item).next().html() : '';
-				content[el.id][i] 		= $(item).parent().find('.slider-content') ? $(item).parent().find('.slider-content').html() : '';
 				$(item).hide();
 				$(item).next().hide();
-        $(item).parent().find('.slider-content').hide();
-        console.log('looking for: '+$(item).parent().html());
 			});			
 			
 
@@ -67,9 +62,6 @@
 			// create title bar
 			$('#'+el.id).append("<div class='cs-title' id='cs-title-"+el.id+"' style='position: absolute; bottom:0; left: 0; z-index: 1000;'></div>");
 						
-			// create content area
-			$('#'+el.id).append("<div class='cs-content' id='cs-content-"+el.id+"' style='position: absolute; bottom:0; left: 0; z-index: 1000;'></div>");
-
 			$.setFields(el);
 			
 			if(params[el.id].navigation)
@@ -209,24 +201,12 @@
 	
 			$('.cs-button-'+el.id).removeClass('cs-active');
 			$('#cs-button-'+el.id+"-"+(imagePos[el.id]+1)).addClass('cs-active');
-		
-      // Update title
+			
 			if(titles[el.id][imagePos[el.id]]){
 				$('#cs-title-'+el.id).css({ 'opacity' : 0 }).animate({ 'opacity' : params[el.id].opacity }, params[el.id].titleSpeed);
 				$('#cs-title-'+el.id).html(titles[el.id][imagePos[el.id]]);
 			} else {
 				$('#cs-title-'+el.id).css('opacity',0);
-			}				
-      
-      // Update content
-      console.log('updating content');
-			if(content[el.id][imagePos[el.id]]){
-      console.log('content found!');
-      console.log('content = '+content[el.id][imagePos[el.id]]);
-				$('#cs-content-'+el.id).css({ 'opacity' : 0 }).animate({ 'opacity' : params[el.id].opacity }, params[el.id].titleSpeed);
-				$('#cs-content-'+el.id).html(content[el.id][imagePos[el.id]]);
-			} else {
-				$('#cs-content-'+el.id).css('opacity',0);
 			}				
 				
 		};
@@ -252,15 +232,15 @@
 			$(el).append("<div id='cs-navigation-"+el.id+"'></div>");
 			$('#cs-navigation-'+el.id).hide();
 			
-			$('#cs-navigation-'+el.id).append("<a href='#' id='cs-prev-"+el.id+"' class='cs-prev'>&lt;</a>");
-			$('#cs-navigation-'+el.id).append("<a href='#' id='cs-next-"+el.id+"' class='cs-next'>&gt;</a>");
+			$('#cs-navigation-'+el.id).append("<a href='#' id='cs-prev-"+el.id+"' class='cs-prev'>prev</a>");
+			$('#cs-navigation-'+el.id).append("<a href='#' id='cs-next-"+el.id+"' class='cs-next'>next</a>");
 			$('#cs-prev-'+el.id).css({
 				'position' 	: 'absolute',
 				'top'		: params[el.id].height/2 - 15,
 				'left'		: 0,
 				'z-index' 	: 1001,
 				'line-height': '30px',
-				'opacity'	: 0.7
+				'opacity'	: params[el.id].opacity
 			}).click( function(e){
 				e.preventDefault();
 				$.transition(el,'prev');
@@ -273,7 +253,7 @@
 				'right'		: 0,
 				'z-index' 	: 1001,
 				'line-height': '30px',
-				'opacity'	: 0.7
+				'opacity'	: params[el.id].opacity
 			}).click( function(e){
 				e.preventDefault();
 				$.transition(el);
@@ -304,7 +284,9 @@
 			});						
 
 			$("#cs-buttons-"+el.id).css({
+				'left'			: '50%',
 				'margin-left' 	: -images[el.id].length*15/2-5,
+				'position'		: 'relative'
 				
 			});
 			
@@ -488,7 +470,7 @@
 	// default values
 	$.fn.coinslider.defaults = {	
 		width: 565, // width of slider panel
-		height: 270, // height of slider panel
+		height: 290, // height of slider panel
 		spw: 7, // squares per width
 		sph: 5, // squares per height
 		delay: 3000, // delay between images in ms

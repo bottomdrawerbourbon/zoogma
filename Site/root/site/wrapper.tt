@@ -98,12 +98,14 @@ $(document).ready(function(){
     });
 
     // Setup image slider
+    /*
     $('#features').coinslider({ 
         hoverPause: false,
         width: 700,
         opacity: 1,
         delay: 10000
     });
+    */
 
     $('#social-fb').click(function() {
         document.location.href='http://www.facebook.com/zoogmaband';

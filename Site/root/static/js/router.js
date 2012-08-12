@@ -22,6 +22,17 @@ var page_change = function(innerContent, callback) {
 
 };
 
+/* Create homepage slide */
+var create_slide = function(img_src, link_url, title, content){
+  
+  new_slide = $('<a class="slider-image" href="'+link_url+'" />');
+  new_slide.append('<img class="slider-image" src="'+img_src+'" />');
+  new_slide.append('<span><b style="color:white;">'+title+'</b></span>');
+  new_slide.after('<div class="slider-content" >'+content+'</div>');
+
+  return new_slide;
+};
+
 /* Not found */
 function not_found(){
   $("#content").html("<h1>404 Not Found</h1><p>The page you are looking for cannot be found!</p>");
@@ -35,16 +46,22 @@ function set_page_background(){
 
 ////////// Controller Functions //////////
 var home_controller = function(){
-    var new_content = jQuery('<div id="sliderHolder"> <div id="features"> <img class="slider-image" src="static/images/feature/campbiscoheader.jpg" /> <span class="slider-title"> <b>Zoogma to play this years camp bisco</b> </span> <div class="slider-content">Look at me!!!</div></div> </div>');
-    new_content.coinslider({ 
-        hoverPause: false,
-        width: 700,
-        opacity: 1,
-        delay: 10000
-    });
-    page_change(new_content);
+  var new_content = $('<div id="sliderHolder" />').append('<div id="features" />')
 
-  };
+  new_content.find('#features').append(create_slide('static/images/feature/campbiscoheader.jpg', 'static/images/feature/campbiscoheader.jpg', 'Zoogma to play this years camp bisco', 'Wow-ee!'));
+  new_content.find('#features').append(create_slide('static/images/feature/campbiscoheader.jpg', 'static/images/feature/campbiscoheader.jpg', 'Zoogma to play NEXT years camp bisco', 'Wow-oo!'));
+  console.log(new_content);
+  page_change(new_content, function(){
+    $('#features').coinslider({ 
+      //hoverPause: false,
+      width: 700,
+      /*height: 247,*/
+      opacity: 1,
+      delay: 7500
+    });
+  });
+
+};
 
 var news_controller = function(){
   $.getJSON('/news/json', function(result) { 

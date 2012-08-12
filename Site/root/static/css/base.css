@@ -410,8 +410,11 @@ a img.gallery-image{
 }
 div.spacer{clear:both; height:30px; display:block;}
 
-#sliderHolder { padding: 5px; margin-top: -103px; width: 700px; }
+#sliderHolder { padding: 5px; margin-top: -103px; width: 700px;}
+#sliderHolder .cs-title{background-color:black !important; opacity:0.5 !important; height:22px !important;}
 #cs-content-features {top: 120px !important; color: white;}
+#cs-buttons-features {display:none !important;}
+#features{ height: 290px !important; }
 .slider-content{color: white;}
 
 /*#footer{width:100%; display:block; padding:10px 0; font-size:11px; background-color:#161b1f;height:30px;position:relative; background-color:#161b1f;}*/
