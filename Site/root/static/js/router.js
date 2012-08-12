@@ -24,7 +24,6 @@ var page_change = function(innerContent, callback) {
 
 /* Create homepage slide */
 var create_slide = function(img_src, link_url, title, content){
- console.log(content); 
   new_slide = $('<a class="slider-image" href="'+link_url+'" />');
   new_slide.append('<img class="slider-image" src="'+img_src+'" />');
   new_slide.append('<span><b style="color:white;">'+title+'</b></span>');
