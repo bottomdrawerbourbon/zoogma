@@ -49,6 +49,7 @@
 				content[el.id][i] 		= $(item).next().next().is('.slider-content') ? $(item).next().next().html() : '';
 				$(item).hide();
 				$(item).next().hide();
+				$(item).next().next().hide();
 			});			
 			
 
