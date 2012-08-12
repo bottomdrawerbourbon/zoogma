@@ -31,7 +31,7 @@
 <script type="text/javascript" src="/static/js/lib/underscore.js"></script>
 <script type="text/javascript" src="/static/js/lib/path.min.js"></script>
 <script type="text/javascript" src="/static/js/router.js"></script>
-<script type="text/javascript" src="/static/js/coin-slider/coin-slider.js"></script>
+<script type="text/javascript" src="/static/js/lib/coin-slider/coin-slider-custom.js"></script>
 <script type="text/javascript" src="/static/js/lib/jquery.nicescroll.min.js"></script>
 <script type="text/javascript" src="/static/js/sc/soundcloud.player.api.js"></script>
 <script type="text/javascript" src="/static/js/sc/sc-player.js"></script>
@@ -97,16 +97,6 @@ $(document).ready(function(){
         preservenativescrolling: true
     });
 
-    // Setup image slider
-    /*
-    $('#features').coinslider({ 
-        hoverPause: false,
-        width: 700,
-        opacity: 1,
-        delay: 10000
-    });
-    */
-
     $('#social-fb').click(function() {
         document.location.href='http://www.facebook.com/zoogmaband';
         return false;
@@ -124,24 +114,6 @@ $(document).ready(function(){
         return false;
     });
 
-/*
-    $('#nav-home-link').click(function() {
-        $.getJSON('/home/json', function(result) {
-            replaceMainContent( formatHomeContent(result) );
-            $(document).trigger('ready');
-    // Setup image slider
-    $('#features').coinslider({ 
-        hoverPause: false,
-        width: 700,
-        opacity: 1,
-        delay: 10000
-    });
-
-
-        });
-        return false;
-    });
-    */
     // Nav links
     $('#nav-home-link').click(function(){ window.location = '#/home'; });
     $('#nav-band-link').click(function(){ window.location = '#/band'; });
@@ -153,11 +125,6 @@ $(document).ready(function(){
     $('#nav-contact-link').click(function(){ window.location = '#/contact'; });
 });
 
-function formatHomeContent(jsonData) {
-    alert("HERE");
-    return '<div id="sliderHolder"> <div id="features"> <img class="slider-image" src="static/images/feature/campbiscoheader.jpg" /> <span class="slider-title"> <b>Zoogma to play this years camp bisco</b> </span> <div class="slider-content">Look at me!!!</div></div> </div>';
-
-}
 </script>
 
 <script type="text/javascript">
@@ -204,9 +171,7 @@ function formatHomeContent(jsonData) {
         <div id="header-nav-right"></div>
         <div id="header-nav-right-filler" style="display:none;"></div>
       </div>
-<!--
-      <div id="sc-player"><a href="http://soundcloud.com/zoogma" class="non-sc-player">My latest tracks</a></div>
--->
+<!-- Audio player -->
 <div id="audio-player">
   <div id="player"></div>
 </div>

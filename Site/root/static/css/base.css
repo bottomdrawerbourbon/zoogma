@@ -318,6 +318,18 @@ END HEADER
   display: block;
 }
 /*** End Tour Dates ***/
+
+/*** Home Page ***/
+#sliderHolder { padding:5px; margin-top:-103px; width:700px; height:900px;}
+.coin-slider{height:900px;}
+#sliderHolder .cs-title{background-color:black !important; opacity:0.5 !important; height:22px !important;}
+#cs-content-features {top:325px !important; color: white;}
+#cs-buttons-features {display:none !important;}
+#coin-slider-features.coin-slider{border:none;}
+#features{ height: 290px !important; border:3px white solid;}
+.slider-content{color: white;}
+/*** End Home Page ***/
+
 /*** Band Page ***/
 #band-info{
   background-color: #FFFFFF;
@@ -409,13 +421,6 @@ a img.gallery-image{
   margin-bottom: 7px;
 }
 div.spacer{clear:both; height:30px; display:block;}
-
-#sliderHolder { padding: 5px; margin-top: -103px; width: 700px;}
-#sliderHolder .cs-title{background-color:black !important; opacity:0.5 !important; height:22px !important;}
-#cs-content-features {top: 120px !important; color: white;}
-#cs-buttons-features {display:none !important;}
-#features{ height: 290px !important; }
-.slider-content{color: white;}
 
 /*#footer{width:100%; display:block; padding:10px 0; font-size:11px; background-color:#161b1f;height:30px;position:relative; background-color:#161b1f;}*/
 #footer { bottom:0;width:100%;height:30px;background:#161b1f; margin-top:50px; text-align: center;}
