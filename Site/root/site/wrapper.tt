@@ -208,6 +208,19 @@ $(document).ready(function(){
     <div id="column_main">
 
       [%~ #content ~%]
+      <!-- slider not being populated via Template Toolkit anymore -->
+      <div id="sliderHolder">
+        <div id="features">
+            <img class="slider-image" src="static/images/feature/campbiscoheader.jpg" />
+            <span class="slider-title">
+              <b>Zoogma to play this years camp bisco</b>
+            </span>
+            <div class="slider-content">
+            <h1>CAMP BISCO ELEVEN</h1><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+            </div>
+        </div>
+      </div>
+      <!-- /slider not being populated via Template Toolkit anymore -->
     </div>
     <!-- Don't remove spacer div. Solve an issue about container height -->
     <div class="spacer"></div>
