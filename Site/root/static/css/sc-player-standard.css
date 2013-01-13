@@ -30,6 +30,9 @@
 
 .sc-player.playing .sc-controls a.sc-pause{
   display: block;
+  left: 120px;
+  top: -8px
+
 }
 
 .sc-player .hidden {
