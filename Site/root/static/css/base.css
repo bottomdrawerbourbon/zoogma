@@ -332,10 +332,10 @@ END HEADER
   padding:5px;
   margin-top:-51px;
   width:700px;
-  height:900px;
+  height:650px;
 }
 .coin-slider{
-  height:900px;
+  height:600px;
 }
 #sliderHolder .cs-title{
   background-color:black !important;
@@ -433,7 +433,7 @@ a img.gallery-image{
 #navbar a{heigth:28px; line-height:28px; padding:0 8px; display:inline;}
 
 #main{
-  width:100%; 
+  width:1343px; 
   display:block; 
   position: relative;
   top: 332px;
