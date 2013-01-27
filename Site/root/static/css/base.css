@@ -457,7 +457,7 @@ a img.gallery-image{
 }
 div.spacer{clear:both; height:30px; display:block;}
 
-#footer { bottom:0;width:100%;height:30px;background:#161b1f; margin-top:50px; text-align: center;}
+#footer { bottom:0;width:100%;height:30px;background:#161b1f; margin-top:50px; text-align: center; display:none;}
 
 /* ------------------------------
 CUSTOM CLASSES

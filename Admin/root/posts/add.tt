@@ -1,0 +1,20 @@
+<script type="text/javascript">
+$(document).ready(function(){
+
+
+});
+</script>
+
+<form action="/posts/add" method="post" enctype="multipart/form-data">
+
+  <input type="hidden" name="form_submit" value="yes">
+  <label>Title <input type="text" name="title" id="title" /></label>
+  <label>Header Image <input type="file" name="file" id="file" /></label>
+  <label>Content <textarea name="content" rows="20" id="content" ></textarea> </label>
+  <label>Publish <input type="checkbox" name="publish" id="publish"/></label>
+  <label>Front Page <input type="checkbox" name="front_page" id="front_page"/></label>
+
+  <br />
+  <br />
+  <input type="submit"/>
+</form>

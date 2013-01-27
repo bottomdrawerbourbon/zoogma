@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+
+<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8" />
+
+  <!-- Set the viewport width to device width for mobile -->
+  <meta name="viewport" content="width=device-width" />
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript"></script>
+
+  <title>Admin</title>
+
+  <!-- Included CSS Files -->
+  <link rel="stylesheet" href="/static/templates.css">
+
+</head>
+<body>
+
+<script type="text/javascript">
+$(document).ready(function(){
+});
+
+</script>
+
+  <!-- Header and Nav -->
+
+  <div class="row">
+    <div class="three columns">
+      <h1>Admin</h1>
+    </div>
+    [% IF error %]
+    <div>
+      <h2>[% error %]</h2>
+    </div>
+    [% END %]
+    [% IF message %]
+    <div>
+      <h2>[% message %]</h2>
+    </div>
+    [% END %]
+  </div>
+
+  <!-- End Header and Nav -->
+
+
+  <div class="row">
+
+    <!-- Main Content Section -->
+    <!-- This has been source ordered to come first in the markup (and on small devices) but to be to the right of the nav on larger screens -->
+    <div class="nine columns push-three">
+
+      [%~ content ~%]
+
+    </div>
+
+
+    <!-- Nav Sidebar -->
+    <!-- This is source ordered to be pulled to the left on larger screens -->
+    <div class="three columns pull-nine">
+
+      <ul class="side-nav">
+        <li><a href="/shows">Tour Dates</a></li>
+        <li><a href="/posts">Posts</a></li>
+        <li><a href="/band">Band</a></li>
+        <li><a href="/images">Images</a></li>
+        <li><a href="/gear">Gear</a></li>
+        <li><a href="/videos">Videos</a></li>
+        <li><a href="/contact">Contact</a></li>
+      </ul>
+
+    </div>
+
+  </div>
+
+
+</body>
+</html>

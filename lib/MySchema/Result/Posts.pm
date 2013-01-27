@@ -1,5 +1,5 @@
 use utf8;
-package MySchema::Result::News;
+package MySchema::Result::Posts;
 
 # Created by DBIx::Class::Schema::Loader
 # DO NOT MODIFY THE FIRST PART OF THIS FILE
@@ -30,11 +30,11 @@ extends 'DBIx::Class::Core';
 
 __PACKAGE__->load_components("InflateColumn::DateTime");
 
-=head1 TABLE: C<news>
+=head1 TABLE: C<Posts>
 
 =cut
 
-__PACKAGE__->table("news");
+__PACKAGE__->table("posts");
 
 =head1 ACCESSORS
 
@@ -76,8 +76,14 @@ __PACKAGE__->add_columns(
   { data_type => "varchar", is_nullable => 1, size => 255 },
   "title",
   { data_type => "varchar", is_nullable => 1, size => 255 },
-  "story",
+  "post",
   { data_type => "text", is_nullable => 1 },
+  "publish",
+  { data_type => "tinyint", is_nullable => 1 },
+  "front_page",
+  { data_type => "tinyint", is_nullable => 1 },
+  "date_created",
+  { data_type => "timestamp", is_nullable => 1 },
 );
 
 =head1 PRIMARY KEY

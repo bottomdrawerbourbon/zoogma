@@ -1,0 +1,25 @@
+<script type="text/javascript">
+$(document).ready(function(){
+
+
+});
+</script>
+<div><a href="/posts/add">Create New post</a></div>
+<table width="100%">
+  <tr>
+    <th width="5%">ID</th>  
+    <th widht="45%";>Title</th>  
+    <th width="20%">Date</th>  
+    <th width="15%">Online</th>  
+    <th width="15%">Front Page</th>  
+  </tr>
+  [% FOREACH post IN posts %]
+  <tr style="text-align:center">
+    <td>[% post.id %]</span></td>
+    <td style="text-align:center;">[% post.title %]</td>
+    <td>[% post.date_created%]</td>
+    <td style="text-align:center;"><input type="checkbox" [% IF post.publish %]checked[% END %]/></td>
+    <td style="text-align:center;"><input type="checkbox" [% IF post.front_page%]checked[% END %]/></td>
+  </tr>
+  [% END %]
+</table>

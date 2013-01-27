@@ -1,0 +1,24 @@
+<script type="text/javascript">
+$(document).ready(function(){
+
+
+});
+</script>
+<table>
+  <tr>
+    <th>Venue</th>  
+    <th>Location</th>  
+    <th>Date</th>  
+    <th>&nbsp;</th>  
+    <th>&nbsp;</th>  
+  </tr>
+  [% FOREACH show IN shows %]
+  <tr>
+    <td><span class="editable">[% show.venue %]</span></td>
+    <td>[% show.city %]</td>
+    <td>[% show.date%]</td>
+    <td><input type="button" name="delete"/></td>
+    <td><input type="button" name="edit"/></td>
+  </tr>
+  [% END %]
+</table>
