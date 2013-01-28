@@ -55,7 +55,7 @@ var home_controller = function(){
   $.getJSON('/news/json?featured=1', function(data) {
     // Loop through posts and add them to the slider structure
     for(idx in data.posts){
-      data.posts[idx].image_url = 'http://zoogma.bottomdrawerbourbon.com/media/images/zoog_tour_poster_20130105.jpg';
+      //data.posts[idx].image_url = 'http://zoogma.bottomdrawerbourbon.com/media/images/zoog_tour_poster_20130105.jpg';
       new_content.find('#features').append(create_slide(data.posts[idx].image_url, '/news/json?id='+data.posts[idx].id, data.posts[idx].title, data.posts[idx].post));
     }
     // Add slider structure to page
@@ -64,7 +64,7 @@ var home_controller = function(){
         hoverPause: true,
         width: 700,
         opacity: 1,
-        delay: 1000
+        delay: 1500
       });
     });
   }); 
