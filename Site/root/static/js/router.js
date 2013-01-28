@@ -44,20 +44,30 @@ function set_page_background(){
 }
 
 ////////// Controller Functions //////////
+// home_controller()
+// Sets the slider on the homepage
 var home_controller = function(){
-  var new_content = $('<div id="sliderHolder" />').append('<div id="features" />')
+  
+  // Variables
+  var new_content = $('<div id="sliderHolder" />').append('<div id="features" />'); // Structure for image slider
 
-  new_content.find('#features').append(create_slide('static/images/feature/campbiscoheader.jpg', 'static/images/feature/campbiscoheader.jpg', 'Zoogma to play this years camp bisco', "<h2>Zoogma to play this year's Camp Bisco</h2><div><!-- start slipsum code --><p style='display:block;'>Your bones don't break, mine do. That's clear. Your cells react to bacteria and viruses differently than mine. You don't get sick, I do. That's also clear. But for some reason, you and I react the exact same way to water. We swallow it too fast, we choke. We get some in our lungs, we drown. However unreal it may seem, we are connected, you and I. We're on the same curve, just on opposite ends. </p><p style='display:block;'>You think water moves fast? You should see ice. It moves like it has a mind. Like it knows it killed the world once and got a taste for murder. After the avalanche, it took us a week to climb out. Now, I don't know exactly when we turned on each other, but I know that seven of us survived the slide... and only five made it out. Now we took an oath, that I'm breaking now. We said we'd say it was the snow that killed the other two, but it wasn't. Nature is lethal but it doesn't hold a candle to man. </p><!-- please do not remove this line --><div style='display:none;'><a href='http://slipsum.com'>lorem ipsum</a></div><!-- end slipsum code --></div>"));
-  new_content.find('#features').append(create_slide('static/images/feature/campbiscoheader.jpg', 'static/images/feature/campbiscoheader.jpg', 'Zoogma to play NEXT years camp bisco', "<h2>Zoogma to play next year's Camp Bisco</h2><div><!-- start slipsum code --><p style='display:block;'>Now that there is the Tec-9, a crappy spray gun from South Miami. This gun is advertised as the most popular gun in American crime. Do you believe that shit? It actually says that in the little book that comes with it: the most popular gun in American crime. Like they're actually proud of that shit.</p><p style='display:block;'>Normally, both your asses would be dead as fucking fried chicken, but you happen to pull this shit while I'm in a transitional period so I don't wanna kill you, I wanna help you. But I can't give you this case, it don't belong to me. Besides, I've already been through too much shit this morning over this case to hand it over to your dumb ass.</p><!-- please do not remove this line --><div style='display:none;'><a href='http://slipsum.com'>lorem ipsum</a></div><!-- end slipsum code --></div>"));
-
-  page_change(new_content, function(){
-    $('#features').coinslider({ 
-      hoverPause: true,
-      width: 700,
-      opacity: 1,
-      delay: 1000
+  // Get slider data
+  $.getJSON('/news/json?featured=1', function(data) {
+    // Loop through posts and add them to the slider structure
+    for(idx in data.posts){
+      data.posts[idx].image_url = 'http://zoogma.bottomdrawerbourbon.com/media/images/zoog_tour_poster_20130105.jpg';
+      new_content.find('#features').append(create_slide(data.posts[idx].image_url, '/news/json?id='+data.posts[idx].id, data.posts[idx].title, data.posts[idx].post));
+    }
+    // Add slider structure to page
+    page_change(new_content, function(){
+      $('#features').coinslider({ 
+        hoverPause: true,
+        width: 700,
+        opacity: 1,
+        delay: 1000
+      });
     });
-  });
+  }); 
 
 };
 
@@ -77,12 +87,59 @@ var news_controller = function(){
   });
 };
 
+// band_controller()
+// Sets the band page
 var band_controller = function(){
-  $.getJSON('/band', function(result) {
-    var newContent = "<div id='band-info'><img src='static/images/zoogma-featured.png'/><div id='band-bio'><p>Zoogma combines the sonic diversity and precision of a DJ with the excitement and immediacy of a four piece rock group. Known for their energetic performances and retina pleasing light show, the band consistently dishes out heavy-weight beat-driven dance parties across the nation. Sets are kinetic, combining live improvisation with carefully crafted beats and melodic textures.</p>";
-    newContent += "<p>Evolving in Oxford, MS, Zoogma's sound is an eclectic fusion of Electronica, Rock, Jazz, World, and Hip-Hop. This blend of genres results in a musical experience that appeals to a range of audiences, with a sound that is refreshingly original yet steeped in the dance music tradition. With the release of their debut album, Recreational Vehicles, along with a relentless tour schedule, the four members have already added their unique voice to the live electronic-rock scene.</p></div>";
-  page_change(newContent);
+  
+  // Variables
+  var bandElm   = $('<div id="band" />'),
+      switchBtn = $('<div id="content-select" />'),
+      gearElm   = $('<div id="band-gear" style="display:none;" />'),
+      bioElm    = $('<div id="band-info" />');
+
+  // Setup content selector
+  switchBtn.append('<input type="radio" name="content" id="content-select-input-bio" value="bio" checked="checked" /><label for="content-select-input-bio">Bio</label>')
+           .append('<input type="radio" name="content" id="content-select-input-gear" value="gear" /><label for="content-select-input-gear">Gear</label>')
+           .buttonset();
+  switchBtn.find('#content-select-input-bio').click(function(){
+    gearElm.hide();
+    bioElm.show();
   });
+  switchBtn.find('#content-select-input-gear').click(function(){
+    bioElm.hide();
+    gearElm.show();
+  });
+
+  // Get band data
+  $.getJSON('/band/json', function(data){
+
+    // Build Gear
+    // Loop through members
+    for(memberIdx in data.endorsements){
+      var memberElm = $('<div class="member" />');
+          nameElm = $('<span class="member-name">'+memberIdx+'</span> <span class="copy">is endorsed by:</span>'),
+          endorsementElm = $('<div class="member-endorsements" />');
+      for(endorsementIdx in data.endorsements[memberIdx]){
+        endorsementElm.append('<a href="'+data.endorsements[memberIdx][endorsementIdx].url+'">'+data.endorsements[memberIdx][endorsementIdx].company+'</a><span class="comma">, </span>'); 
+      }
+      endorsementElm.find('.comma:last-child').remove();
+      memberElm.append(nameElm).append(endorsementElm);
+      gearElm.append(memberElm);
+    }
+
+    // Build Bio
+    bioElm.append('<img src="'+data.bio.image_url+'" />')
+          .append('<div id="band-bio">'+data.bio.post+'</div>');
+  });
+
+  // Add all elements to #band element
+  bandElm.append(switchBtn)
+         .append(bioElm)
+         .append(gearElm);
+
+  // Add #band element to page
+  page_change(bandElm);
+
 };
 
 var gallery_controller = function(){

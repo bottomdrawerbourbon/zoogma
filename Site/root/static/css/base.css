@@ -364,29 +364,43 @@ END HEADER
 /*** End Home Page ***/
 
 /*** Band Page ***/
+#content-select{
+  width: 100px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: -56px;
+  height: 88px;
+}
 #band-info{
   background-color: #FFFFFF;
   padding: 5px; 
-  margin-top: -50px; 
+  margin-top: -35px; 
   width: 700px;
+  border-radius: 5px;
 }
-
 #band-info img {
   display:block; /*images must be set to block in order use auto margins*/
   margin-top: 20px;
   margin-left: auto;
   margin-right: auto;
 }
-
 #band-bio {
   padding: 20px;
   margin-top: 20px;
   margin-left: auto;
   margin-right: auto;
 }
-
 #band-bio p {
   display: block;
+}
+#band-gear{
+  background-color: white;
+  margin-top: -35px;
+  padding: 10px;
+  border-radius: 5px;
+}
+.member{
+  margin-bottom: 15px;
 }
 /** END BAND PAGE **/
 
@@ -433,7 +447,8 @@ a img.gallery-image{
 #navbar a{heigth:28px; line-height:28px; padding:0 8px; display:inline;}
 
 #main{
-  width:1343px; 
+  /*width:1343px;*/
+  width: 960px;
   display:block; 
   position: relative;
   top: 332px;
@@ -446,7 +461,7 @@ a img.gallery-image{
   float:left;
 }
 #column_main{
-    width:760px; 
+    width:700px; 
     margin-right:20px; 
     float:left;
     position: relative;
