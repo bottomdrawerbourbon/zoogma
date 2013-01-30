@@ -25,18 +25,19 @@ sub default :Path {
     my ( $self, $c ) = @_;
 
     my $args = $c->req->params;
-    use Data::Dumper;
-    warn Dumper($args);
     
-    my $showsRs = $c->model('MyModel::Posts')->search(
-        {}, 
+    my $postRs = $c->model('MyModel::Posts')->search(
+        {
+            bio      => { '!=' => 1 }
+        }, 
         { 
             order_by => { -asc => 'id'},
             rows     => $args->{rows} || 20,
             page     => $args->{page} || 1,
         });
-    @{$c->stash->{posts}} = $showsRs->all;
+    @{$c->stash->{posts}} = $postRs->all;
     $c->stash->{current_view} = 'TT';
+    $c->stash->{template} = 'posts/default.tt';
 }
 
 sub add :Local { 
@@ -81,7 +82,7 @@ sub add :Local {
                 return;
             }
 
-            $image_name  = 'http://media.bottomdrawerbourbon.com/posts/' . $filename;
+            $image_name  = 'http://media.bottomdrawerbourbon.com/images/' . $filename;
         } else {
             $c->log->info("Didn't see a file uploaded...");
         }
@@ -97,6 +98,48 @@ sub add :Local {
 
     $c->stash->{message} = "New post uploaded";
 }
+
+sub edit :Local : Args(1) {
+    my ($self, $c, $id) = @_;
+
+    my $post = $c->model('MyModel::Posts')->find({ id => $id });
+    if( !$post ) {
+        $c->stash->{error} = "Unable to find specified post";
+        $c->detach('/posts/default');
+    }
+    $c->stash->{post} = $post;
+
+    # If the page was submitted to
+    if( $c->req->params->{form_submit} ) {
+        $c->log->info("Updating Post $id");
+        foreach my $param( qw(title post image) ) {
+            $post->$param( $c->req->params->{$param} );
+        }
+        $post->front_page($c->req->params->{front_page} ? 1 : 0);
+        $post->front_page($c->req->params->{publish} ? 1 : 0);
+
+        $post->update;
+        $c->stash->{message} = "Post updated";
+        $c->detach('/posts/default');
+    }
+    $c->stash->{current_view} = 'TT';
+}
+
+sub delete :Local : Args(1) {
+    my ($self, $c, $id) = @_;
+    $c->stash->{current_view} = 'TT';
+
+    my $post = $c->model('MyModel::Posts')->find({ id => $id });
+    if( !$post ) {
+        $c->stash->{error} = "Unable to find specified post";
+        $c->detach('/posts/default');
+    }
+    $post->delete;
+    $c->stash->{message} = "Post Deleted";
+
+    $c->detach('/posts/default');
+}
+
 
 
 =head1 AUTHOR

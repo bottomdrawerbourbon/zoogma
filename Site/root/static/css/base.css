@@ -30,7 +30,7 @@ HTML Redefine Tags
 input, form, textarea
 h1, h2, h3, h4, h5, h6{margin:0; padding:0;}
 h1{font-size:18px;}
-h2{font-size:14px; color:#999999;}
+h2{font-size:20px; color:#303030;}
 h3{font-size:13px; border-bottom:solid 1px #DEDEDE; padding:4px 0; margin-bottom:10px;}
 
 a:link, a:visited{color:#0033CC;}
@@ -133,6 +133,9 @@ HEADER
 #header-nav #header-nav-main ul li#nav-home-link:hover{
   background:url(/static/images/nav_sprites.png) 0px 47px;
 }
+#header-nav #header-nav-main ul li#nav-home-link.active{
+  background:url(/static/images/nav_sprites.png) 0px 94px;
+}
 #header-nav #header-nav-main ul li#nav-band-link{ 
   width:63px;
   height:48px;
@@ -140,6 +143,9 @@ HEADER
 }
 #header-nav #header-nav-main ul li#nav-band-link:hover{
   background:url(/static/images/nav_sprites.png) 525px 47px;
+} 
+#header-nav #header-nav-main ul li#nav-band-link.active{
+  background:url(/static/images/nav_sprites.png) 525px 94px;
 } 
 #header-nav #header-nav-main ul li#nav-shows-link{ 
   width:79px;
@@ -149,6 +155,9 @@ HEADER
 #header-nav #header-nav-main ul li#nav-shows-link:hover{
   background:url(/static/images/nav_sprites.png) 462px 47px;
 } 
+#header-nav #header-nav-main ul li#nav-shows-link.active{
+  background:url(/static/images/nav_sprites.png) 462px 94px;
+}
 #header-nav #header-nav-main ul li#nav-news-link{ 
   width:66px;
   height:48px;
@@ -157,6 +166,9 @@ HEADER
 #header-nav #header-nav-main ul li#nav-news-link:hover{
   background:url(/static/images/nav_sprites.png) 383px 47px;
 } 
+#header-nav #header-nav-main ul li#nav-news-link.active{
+  background:url(/static/images/nav_sprites.png) 383px 94px;
+}
 #header-nav #header-nav-main ul li#nav-gallery-link{ 
   width:90px;
   height:48px;
@@ -164,6 +176,9 @@ HEADER
 }
 #header-nav #header-nav-main ul li#nav-gallery-link:hover{
   background:url(/static/images/nav_sprites.png) 316px 47px;
+} 
+#header-nav #header-nav-main ul li#nav-gallery-link.active{
+  background:url(/static/images/nav_sprites.png) 316px 94px;
 } 
 #header-nav #header-nav-main ul li#nav-music-link{
   width:66px;
@@ -181,6 +196,9 @@ HEADER
 #header-nav #header-nav-main ul li#nav-store-link:hover{
   background:url(/static/images/nav_sprites.png) 160px 47px;
 } 
+#header-nav #header-nav-main ul li#nav-store-link.active{
+  background:url(/static/images/nav_sprites.png) 160px 94px;
+} 
 #header-nav #header-nav-main ul li#nav-contact-link{ 
   width:92px;
   height:48px;
@@ -188,6 +206,9 @@ HEADER
 }
 #header-nav #header-nav-main ul li#nav-contact-link:hover{
   background:url(/static/images/nav_sprites.png) 91px 47px;
+} 
+#header-nav #header-nav-main ul li#nav-contact-link.active{
+  background:url(/static/images/nav_sprites.png) 91px 94px;
 } 
 /*** End Header Nav ***/
 /* ------------------------------
@@ -333,7 +354,8 @@ END HEADER
 /*** Home Page ***/
 #sliderHolder {
   padding:5px;
-  margin-top:-51px;
+  margin-top:-80px;
+  margin-left:30px;
   width:700px;
   height:650px;
 }
@@ -367,6 +389,13 @@ END HEADER
 /*** End Home Page ***/
 
 /*** Band Page ***/
+#band-main{
+  background-color: #FFFFFF;
+  padding: 5px; 
+  margin-top: -80px; 
+  margin-left: 30px;
+  width: 700px;
+}
 #content-select{
   width: 100px;
   margin-left: auto;
@@ -374,13 +403,13 @@ END HEADER
   margin-top: -56px;
   height: 88px;
 }
-#band-info{
+/*#band-info{
   background-color: #FFFFFF;
   padding: 5px; 
   margin-top: -35px; 
   width: 700px;
   border-radius: 5px;
-}
+}*/
 #band-info img {
   display:block; /*images must be set to block in order use auto margins*/
   margin-top: 20px;
@@ -393,14 +422,22 @@ END HEADER
   margin-left: auto;
   margin-right: auto;
 }
+#bio {
+  cursor: pointer;
+}
+#gear {
+  cursor: pointer;
+}
+
+.not-selected h2{
+  color: #E0E0E0;
+}
 #band-bio p {
   display: block;
 }
 #band-gear{
   background-color: white;
-  margin-top: -35px;
   padding: 10px;
-  border-radius: 5px;
 }
 .member{
   margin-bottom: 15px;
@@ -408,19 +445,33 @@ END HEADER
 /** END BAND PAGE **/
 
 /** BEGIN NEWS PAGE **/
+
 #news-main{
   background-color: #FFFFFF;
   padding: 5px; 
-  margin-top: -50px; 
+  margin-top: -80px; 
+  margin-left: 30px;
   width: 700px;
 }
 
-#news-heading {
-
+div.news-post {
+  margin:50px 20px 10px 20px;
 }
 
-#news-content {
+div.news-post h3.news-heading {
+  font-size:20px;
+  color: #8E9396;
+}
+div.news-post div.news-date{
+  font-size:10px;
+  padding-bottom: 30px;
+}
 
+div.news-post div.news-content {
+  font-family: "Arial";
+  font-size:16px;
+  padding: 0px 20px 0px 20px;
+  
 }
 
 #news-content p {
@@ -428,10 +479,94 @@ END HEADER
 }
 
 /** END NEWS PAGE **/
+/** BEGIN SHOWS PAGE **/
+#shows-main{
+  background-color: #FFFFFF;
+  padding: 5px; 
+  margin-top: -80px; 
+  margin-left: 30px;
+  width: 700px;
+}
+div.show-links {
+    padding: 15px 20px 25px 10px;
+}
+div.show-row {
+  padding: 10px 10px 10px 10px;
+  margin: 0px 10px 1px 10px;
+  border-top: dashed;
+  border-width: 1px;
+  border-color: gray;
+  background-color: #DEDDDD;
+  font-size: 11px;
+  font-family: "Verdana";
+}
+div.show-row img {
+  margin-right: 7px;
+}
+div.show-row span.date {
+  display: inline-block;
+  width: 190px;
+  color: #cf6921;
+  white-space: nowrap;
+}
+div.show-row span.venue {
+  display: inline-block;
+  width: 200px;
+  white-space: nowrap;
+}
+div.show-row span.location {
+  display: inline-block;
+  width: 168px;
+  white-space: nowrap;
+}
+div.show-row span.time {
+  display: inline-block;
+  white-space: nowrap;
+}
+.show-description-row {
+  font-size: 11px;
+  font-family: "Verdana";
+  margin: 15px 10px 0px 15px;
+  display: none;
+}
+.show-description-row div.show-additional-band {
+  white-space: nowrap;
+  font-size: 20px;
+  font-color: blue;
+  margin-bottom:8px;
+}
+.show-description-row div.show-desc-address{
+  white-space: nowrap;
+  font-size: 15px;
+  margin-bottom:8px;
+}
+.show-description-row div.show-desc-phone{
+  white-space: nowrap;
+  font-size: 12px;
+  margin-bottom:5px;
+}
+.show-description-row div.show-desc-facebook{
+  white-space: nowrap;
+  font-size: 12px;
+}
+.show-description-row div.show-desc-social {
+  margin-top: 10px;
+}
+span.show-desc-facebook img{
+  vertical-align: middle;
+}
+span.show-desc-tickets img{
+  vertical-align: middle;
+}
+
+/** END SHOWS PAGE **/
 /** GALLERY PAGE **/
-#gallery{
-  width: 100%;
-  margin-top: -95px;
+#gallery-main{
+  background-color: #FFFFFF;
+  padding: 5px; 
+  margin-top: -80px; 
+  margin-left: 30px;
+  width: 700px;
 }
 a.gallery-image-link{
   display: inline-block;
@@ -445,6 +580,38 @@ a img.gallery-image{
   max-height: 100px;
 }
 /** END GALLERY PAGE **/
+/** MUSIC PAGE **/
+#music-main{
+  background-color: #FFFFFF;
+  padding: 5px; 
+  margin-top: -80px; 
+  margin-left: 30px;
+  width: 700px;
+  min-height: 300px;
+}
+/** END MUSIC PAGE **/
+/** STORE PAGE **/
+#store-main{
+  background-color: #FFFFFF;
+  padding: 5px; 
+  margin-top: -80px; 
+  margin-left: 30px;
+  width: 700px;
+  min-height: 300px;
+}
+/** END STORE PAGE **/
+
+/** CONTACT PAGE **/
+#contact-main{
+  background-color: #FFFFFF;
+  padding: 5px; 
+  margin-top: -80px; 
+  margin-left: 30px;
+  width: 700px;
+  min-height: 300px;
+}
+/** END CONTACT PAGE **/
+
 
 #navbar{width:auto; display:block; height:28px;}
 #navbar a{heigth:28px; line-height:28px; padding:0 8px; display:inline;}
@@ -471,7 +638,7 @@ a img.gallery-image{
     left: 180px;
 }
 #column_main h2{
-  margin-bottom: 7px;
+  margin: 20px 0px 10px 30px;
 }
 div.spacer{clear:both; height:30px; display:block;}
 

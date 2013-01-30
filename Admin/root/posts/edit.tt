@@ -1,0 +1,14 @@
+<form action="/posts/edit/[% post.id %]" method="post">
+
+  <input type="hidden" name="form_submit" value="yes">
+  <label>Title <input type="text" name="title" id="title" value="[% post.title %]"/></label>
+  <label>Image URL <input type="text" name="image" id="image" value="[% post.image %]"/></label>
+  <label>Content <textarea name="post" rows="20" id="post" >[% post.post %]</textarea> </label>
+  <label>Publish <input type="checkbox" name="publish" id="publish" [% IF post.publish %]checked[% END %]/></label>
+  <label>Front Page <input type="checkbox" name="front_page" id="front_page" [% IF post.front_page %]checked[% END %]/></label>
+
+  <br />
+  <br />
+  <input type="submit"/>
+
+</form>

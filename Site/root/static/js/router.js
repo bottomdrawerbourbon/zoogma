@@ -64,7 +64,7 @@ var home_controller = function(){
         hoverPause: true,
         width: 700,
         opacity: 1,
-        delay: 1500
+        delay: 5000
       });
     });
   }); 
@@ -73,13 +73,76 @@ var home_controller = function(){
 
 var news_controller = function(){
   $.getJSON('/news/json', function(result) { 
-    var newContent = "<div id='news-main'>" +
-                     "<div id='news-heading'>";
-    for (var i = 0; i < result.news.length; i++) {
-        var object = result.news[i];
-        newContent += "<div id='news-heading'>" + object.title + "</div>"+
-                      "<div id='news-content'>" + object.story + "</div>"+
+    var newContent = 
+    "<div id='news-main'>" +
+    "<h2>News</h2>" +
+    "<hr style='width:95%'/>";
+    for (var i = 0; i < result.posts.length; i++) {
+        newContent += "<div class='news-post'>";
+        var object = result.posts[i];
+        //if( object.image_url ) {
+        //    newContent += "<img src='" + object.image_url + "'/>";
+        //}
+        newContent += "<h3 class='news-heading'>" + object.title + "</h3>"+
+                      "<div class='news-date'>" + object.expanded_date + "</div>" +
+                      "<div class='news-content'>" + object.post + "</div>"+
                       "<br/>";
+        newContent += "</div>";
+    }
+    newContent += "</div>";
+    page_change(newContent);
+  });
+};
+
+var shows_controller = function(){
+  $.getJSON('/shows/json', function(result) { 
+    var newContent = "<div id='shows-main'>";
+    newContent +="<h2>Shows</h2>";
+    newContent +="<hr style='width:95%'/>";
+    newContent +="<div class='show-links'>" + 
+                 "<a href='http://www.ticketmaster.com/Zoogma-tickets/artist/1467550'>Ticketmaster</a>" +
+                 ' :: ' + 
+                 "<a href='http://www.livenation.com/artists/47934/zoogma/past'>Live Nation</a>" +
+                 ' :: ' + 
+                 "<a href='http://www.jambase.com/artists/49704/Zoogma'>Jambase</a></div>";
+    for (var i = 0; i < result.length; i++) {
+        var object = result[i];
+        newContent += 
+         "<div class='show-row'>" + 
+         "<span class='show-toggle'><img id='show-"+ object.id +"' src='/static/images/expand.png' onclick=\"javascript:$('#desc-" + object.id + "').css('display', 'block');$(this).css('display', 'none');$('#hide-"+ object.id +"').css('display', 'inline-block');\"/></span>" + 
+         "<span class='show-toggle'><img style='display:none' id='hide-"+ object.id +"' src='/static/images/collapse.png' onclick=\"javascript:$('#desc-" + object.id + "').css('display', 'none');$(this).css('display', 'none');$('#show-"+ object.id +"').css('display', 'inline-block');\"/></span>" + 
+         "<span class='date'>" + object.expanded_date + "</span>" +
+         "<span class='venue'><a href='" + object.venue_url + "'>" + object.venue + "</a></span>" +
+         "<span class='location'>" + object.city + "</span>" +
+         "<span class='time'>" + object.expanded_time + "</span>" +
+         "<div class='show-description-row' id='desc-" + object.id + "'>";
+
+         if( !(object.additional_band === undefined) ) {
+                newContent += "<div class='show-additional-band'>" + object.additional_band + "</div>";
+         }
+
+         if( !(object.venue_address === undefined) ) {
+            newContent += "<div class='show-desc-address'>" + object.venue_address + "</div>";
+         }
+
+         if( !(object.venue_phone === undefined) ) {
+            newContent += "<div class='show-desc-phone'>" + object.venue_phone + "</div>";
+         }
+         if( !(object.ticket_adv_price === undefined) ) {
+                newContent += "<div class='show-adv-price'>Advanced Price: " + object.ticket_adv_price + "</div>";
+         }
+         if( !(object.ticket_dos_price === undefined) ) {
+                newContent += "<div class='show-dos-price'>Door Price: " + object.ticket_dos_price + "</div>";
+         }
+
+         newContent += 
+         "<div class='show-desc-social'>"+
+         "<span class='show-desc-facebook'><img src='/static/images/fb_icon.png'/><a href='" + object.facebook_event_url + "'>Facebook event</a></span>" +
+         " :: " + 
+         "<span class='show-desc-tickets'><img width='15px' src='/static/images/ticket.png'/><a href='" + object.tickets_url + "'>Ticketing info</a></span>" +
+         "</div>"+
+         "</div>"+
+         "</div>";
     }
     newContent += "</div>" +
                   "</div>";
@@ -87,25 +150,35 @@ var news_controller = function(){
   });
 };
 
+
+
 // band_controller()
 // Sets the band page
 var band_controller = function(){
   
-  // Variables
-  var bandElm   = $('<div id="band" />'),
-      switchBtn = $('<div id="content-select" />'),
-      gearElm   = $('<div id="band-gear" style="display:none;" />'),
-      bioElm    = $('<div id="band-info" />');
 
-  // Setup content selector
-  switchBtn.append('<input type="radio" name="content" id="content-select-input-bio" value="bio" checked="checked" /><label for="content-select-input-bio">Bio</label>')
-           .append('<input type="radio" name="content" id="content-select-input-gear" value="gear" /><label for="content-select-input-gear">Gear</label>')
-           .buttonset();
-  switchBtn.find('#content-select-input-bio').click(function(){
+  // Variables
+  var bandElm   = $('<div id="band-main" />');
+  //    switchBtn = $('<div id="content-select" />'),
+  var gearElm   = $('<div id="band-gear" style="display:none;" />');
+  var bioElm    = $('<div id="band-info" />');
+
+  
+  var switchBtn = $('<div id="band-header"><span id="bio"><h2 style="display: inline-block;">Bio</h2></span><span id="gear" class="not-selected"><h2 style="display: inline-block;">Gear</h2></span></div><hr style="width:95%"/>');
+
+  // Set up the switch when each span is pressed
+  switchBtn.find('#bio').click(function(){
+    switchBtn.find('#gear').addClass('not-selected');
+    switchBtn.find('#bio').removeClass('not-selected');
+    //gearElm.removeClass('not-selected');
     gearElm.hide();
     bioElm.show();
   });
-  switchBtn.find('#content-select-input-gear').click(function(){
+  switchBtn.find('#gear').click(function(){
+    switchBtn.find('#bio').addClass('not-selected');
+    switchBtn.find('#gear').removeClass('not-selected');
+    //gearElm.addClass('not-selected');
+    //bioElm.removeClass('not-selected');
     bioElm.hide();
     gearElm.show();
   });
@@ -139,12 +212,14 @@ var band_controller = function(){
 
   // Add #band element to page
   page_change(bandElm);
-
 };
 
 var gallery_controller = function(){
 
-  var gallery = jQuery('<div id="gallery" />');
+  var newContent = "<div id='shows-main'>";
+  newContent +="<h2>Shows</h2>";
+
+  var gallery = jQuery('<div id="gallery-main" />');
   // Get Facebook photo data
   // /* for albums: https://graph.facebook.com/zoogmaband/albums */
   $.getJSON("https://graph.facebook.com/zoogmaband/photos", function(data){
@@ -157,7 +232,7 @@ var gallery_controller = function(){
           
         }
       });
-      gallery.prepend('<h2>Gallery</h2>');
+      gallery.prepend('<h2>Gallery</h2><hr style="width:95%"/>');
     }
     page_change(gallery, function(){
       $(".gallery-image-link").fancybox({
@@ -169,6 +244,31 @@ var gallery_controller = function(){
     });
   });
 
+};
+var music_controller = function(){
+    var newContent = "<div id='music-main'>";
+    newContent +="<h2>Music</h2>";
+    newContent +="<hr style='width:95%'/>";
+
+    newContent += "</div>" +
+                  "</div>";
+    page_change(newContent);
+};
+var store_controller = function(){
+    var newContent = "<div id='store-main'>";
+    newContent +="<h2>Store</h2>";
+    newContent +="<hr style='width:95%'/>";
+    newContent += "</div>" +
+                  "</div>";
+    page_change(newContent);
+};
+var contact_controller = function(){
+    var newContent = "<div id='contact-main'>";
+    newContent +="<h2>Contact</h2>";
+    newContent +="<hr style='width:95%'/>";
+    newContent += "</div>" +
+                  "</div>";
+    page_change(newContent);
 };
 
 ////////// Routing //////////
@@ -185,17 +285,27 @@ Path.map("#/band").to(function(){
   band_controller();
 }).enter(set_page_background);
 /* Shows */
-Path.map("#/shows").to(function(){ page_change('<div style="color:white;">Shows</div>'); }).enter(set_page_background);
+Path.map("#/shows").to(function(){
+  shows_controller();
+}).enter(set_page_background);
 /* Store */
-Path.map("#/store").to(function(){ page_change('<div style="color:white;">Store</div>'); }).enter(set_page_background);
+Path.map("#/store").to(function(){ 
+  store_controller();
+}).enter(set_page_background);
 /* Music */
-Path.map("#/music").to(function(){ page_change('<div style="color:white;">Music</div>'); }).enter(set_page_background);
+Path.map("#/music").to(function(){ 
+  music_controller();
+}).enter(set_page_background);
 /* Gallery */
 Path.map("#/gallery").to(function(){
   gallery_controller();
 }).enter(set_page_background);
+Path.map("#/contact").to(function(){
+  contact_controller();
+}).enter(set_page_background);
+
 /* Contact */
-Path.map("#/shows").to(function(){ page_change('<div style="color:white;">Contact</div>'); }).enter(set_page_background);
+// Path.map("#/shows").to(function(){ page_change('<div style="color:white;">Contact</div>'); }).enter(set_page_background);
 
 ////////// Setup //////////
 Path.root("#/home");

@@ -1,0 +1,14 @@
+<form action="/shows/edit/[% show.id %]" method="post">
+
+  <input type="hidden" name="form_submit" value="yes">
+  <label>Venue <input type="text" name="venue" id="venue" value="[% show.venue %]"/></label>
+  <label>Location <input type="text" name="city" id="city" value="[% show.city %]"/></label>
+  <label>Date (YYYY-MM-DD HH:MM:SSformat)<input type="text" name="date" id="date" value="[% show.date.strftime("%F %T") %]"/></label>
+  <label>Facebook Event URL <input type="text" name="facebook_event_url" id="facebook_event_url" value="[% show.facebook_event_url %]"/></label>
+  <label>Ticket URL <input type="text" name="tickets_url" id="tickets_url" value="[% show.tickets_url %]"/></label>
+  <label>Description <textarea rows="10" name="description" id="description">[% show.description %]</textarea></label>
+
+  <br />
+  <br />
+  <input type="submit"/>
+</form>

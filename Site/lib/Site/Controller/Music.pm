@@ -1,4 +1,4 @@
-package Site::Controller::News;
+package Site::Controller::Music;
 use Moose;
 use namespace::autoclean;
 

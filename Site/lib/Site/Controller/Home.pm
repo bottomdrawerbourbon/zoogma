@@ -25,17 +25,13 @@ sub index :Path :Args(0) {
     my ( $self, $c ) = @_;
 
     $c->stash->{template} = 'default.tt';
-
     # Fetch the features for the homepage...
-    $c->stash->{features} = $c->model('MyModel::Feature')->search({id => 1});
     $c->stash->{current_view} = 'TT';
 }
 
 sub json :Local {
     my ( $self, $c ) = @_;
     $c->stash->{current_view} = 'JSON';
-    $c->stash->{features} = $c->model('MyModel::Feature')->search({id => 1});
-
 }
 
 sub end : ActionClass('RenderView') {}

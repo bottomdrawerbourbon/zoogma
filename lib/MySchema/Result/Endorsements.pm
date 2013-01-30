@@ -1,12 +1,12 @@
 use utf8;
-package MySchema::Result::Feature;
+package MySchema::Result::Endorsements;
 
 # Created by DBIx::Class::Schema::Loader
 # DO NOT MODIFY THE FIRST PART OF THIS FILE
 
 =head1 NAME
 
-MySchema::Result::Feature
+MySchema::Result::News
 
 =cut
 
@@ -30,11 +30,11 @@ extends 'DBIx::Class::Core';
 
 __PACKAGE__->load_components("InflateColumn::DateTime");
 
-=head1 TABLE: C<features>
+=head1 TABLE: C<Posts>
 
 =cut
 
-__PACKAGE__->table("features");
+__PACKAGE__->table("endorsements");
 
 =head1 ACCESSORS
 
@@ -44,12 +44,6 @@ __PACKAGE__->table("features");
   extra: {unsigned => 1}
   is_auto_increment: 1
   is_nullable: 0
-
-=head2 position
-
-  data_type: 'integer'
-  default_value: 1
-  is_nullable: 1
 
 =head2 image
 
@@ -65,7 +59,6 @@ __PACKAGE__->table("features");
 
 =head2 copy
 
-  accessor: 'column_copy'
   data_type: 'text'
   is_nullable: 1
 
@@ -79,14 +72,14 @@ __PACKAGE__->add_columns(
     is_auto_increment => 1,
     is_nullable => 0,
   },
-  "position",
-  { data_type => "integer", default_value => 1, is_nullable => 1 },
-  "image",
+  "member",
   { data_type => "varchar", is_nullable => 1, size => 255 },
-  "title",
+  "company",
   { data_type => "varchar", is_nullable => 1, size => 255 },
-  "copy",
-  { accessor => "column_copy", data_type => "text", is_nullable => 1 },
+  "url",
+  { data_type => "varchar", is_nullable => 1, size => 255 },
+  "date_created",
+  { data_type => "timestamp", is_nullable => 1 },
 );
 
 =head1 PRIMARY KEY
@@ -103,7 +96,7 @@ __PACKAGE__->set_primary_key("id");
 
 
 # Created by DBIx::Class::Schema::Loader v0.07025 @ 2012-07-06 06:08:35
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:hS69pvlIYoBwn9WBHWWwTQ
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:aakDAVFvnBIpcP0KUOG8BA
 
 
 # You can replace this text with custom code or comments, and it will be preserved on regeneration

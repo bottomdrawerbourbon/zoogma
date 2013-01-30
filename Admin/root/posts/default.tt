@@ -5,21 +5,26 @@ $(document).ready(function(){
 });
 </script>
 <div><a href="/posts/add">Create New post</a></div>
+<hr/>
 <table width="100%">
   <tr>
     <th width="5%">ID</th>  
-    <th widht="45%";>Title</th>  
+    <th widht="45%">Title</th>  
     <th width="20%">Date</th>  
     <th width="15%">Online</th>  
     <th width="15%">Front Page</th>  
+    <th width="15%">&nbsp;</th>  
+    <th width="15%">&nbsp;</th>  
   </tr>
   [% FOREACH post IN posts %]
   <tr style="text-align:center">
     <td>[% post.id %]</span></td>
     <td style="text-align:center;">[% post.title %]</td>
-    <td>[% post.date_created%]</td>
+    <td>[% post.date_created.strftime("%F") %]</td>
     <td style="text-align:center;"><input type="checkbox" [% IF post.publish %]checked[% END %]/></td>
     <td style="text-align:center;"><input type="checkbox" [% IF post.front_page%]checked[% END %]/></td>
+    <td><a href="/posts/edit/[% post.id %]">Edit</a></td>
+    <td><a href="/posts/delete/[% post.id %]">Delete</a></td>
   </tr>
   [% END %]
 </table>

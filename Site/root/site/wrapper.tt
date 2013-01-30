@@ -41,7 +41,23 @@
 <script type="text/javascript" src="/static/js/lib/fancybox/source/helpers/jquery.fancybox-buttons.js?v=1.0.2"></script>
 <script type="text/javascript" src="/static/js/lib/fancybox/source/helpers/jquery.fancybox-media.js?v=1.0.0"></script>
 <script type="text/javascript" src="/static/js/lib/fancybox/source/helpers/jquery.fancybox-thumbs.js?v=2.0.6"></script>
-
+<style>
+#slider{
+  width: 70px;
+  top: 12px;
+  left: 17px;
+  border-radius: 0px;
+  background: black;
+}
+#slider a{
+  /*
+  width: 5px;
+  border-radius: 0px;
+  */
+  display: none;
+}
+#slider .ui-slider-range { background: #1a6575; }
+</style>
 <script type="text/javascript">
 
 var setupAudioPlayer = function(){
@@ -86,6 +102,21 @@ var setupAudioPlayer = function(){
     });
   });
 
+  // Create position slider
+  var sliderElm = $('<div id="slider" />').slider({
+    max: 1,
+    value: 0,
+    step: 0.001,
+    animate: true,
+    orientation: "horizontal",
+    range: "min"
+  });
+  $('#audio-player').prepend(sliderElm);
+  // Detect audio time updates and update slider
+  $(document).bind('onMediaTimeUpdate.scPlayer', function(event){
+    $('#slider').slider( "value", event.relative );
+  });
+
 };
 
 $(document).ready(function(){
@@ -112,19 +143,38 @@ $(document).ready(function(){
         return false;
     });
     $('#social-sc').click(function() {
-        document.location.href='http://soundcloud.com/zoogmaband';
+        document.location.href='http://soundcloud.com/zoogma';
         return false;
     });
 
     // Nav links
-    $('#nav-home-link').click(function(){ window.location = '#/home'; });
-    $('#nav-band-link').click(function(){ window.location = '#/band'; });
-    $('#nav-shows-link').click(function(){ window.location = '#/shows'; });
-    $('#nav-news-link').click(function(){ window.location = '#/news'; });
-    $('#nav-gallery-link').click(function(){ window.location = '#/gallery'; });
-    $('#nav-music-link').click(function(){ window.location = '#/music'; });
-    $('#nav-store-link').click(function(){ window.location = '#/store'; });
-    $('#nav-contact-link').click(function(){ window.location = '#/contact'; });
+    $('#nav-home-link').click(function(){ window.location = '#/home'; setActive(this.id); });
+    $('#nav-band-link').click(function(){ window.location = '#/band'; setActive(this.id);});
+    $('#nav-shows-link').click(function(){ window.location = '#/shows'; setActive(this.id);});
+    $('#nav-news-link').click(function(){ window.location = '#/news'; setActive(this.id);});
+    $('#nav-gallery-link').click(function(){ window.location = '#/gallery'; setActive(this.id);});
+    $('#nav-music-link').click(function(){ window.location = '#/music'; setActive(this.id);});
+    $('#nav-store-link').click(function(){ window.location = '#/store'; setActive(this.id);});
+    $('#nav-contact-link').click(function(){ window.location = '#/contact'; setActive(this.id);});
+
+    // Used to set the tabs to active/inactive
+    var setActive = function(id) {
+        var listItems = $("#header-nav-main ul li");
+        // Loop over list items and check to see which one is the one passed in
+        listItems.each(function(idx, li) {
+            if( li.id == id ) {
+                $(li).addClass("active");
+            }
+            else {
+                $(li).removeClass("active");
+            }
+        });
+    };
+    // Not going to make a default for now...
+
+    $(".show-expand").click(function() {
+        alert("HERE");
+    });
 });
 
 </script>
@@ -212,6 +262,7 @@ $(document).ready(function(){
       [%~ #content ~%]
       <!-- slider not being populated via Template Toolkit anymore -->
       <div id="sliderHolder">
+        <!-- Taking out for now..
         <div id="features">
             <img class="slider-image" src="static/images/feature/campbiscoheader.jpg" />
             <span class="slider-title">
@@ -222,6 +273,7 @@ $(document).ready(function(){
             </div>
         </div>
       </div>
+      -->
       <!-- /slider not being populated via Template Toolkit anymore -->
     </div>
     <!-- Don't remove spacer div. Solve an issue about container height -->

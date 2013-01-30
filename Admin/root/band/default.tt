@@ -1,0 +1,19 @@
+<div>Endorsments</div>
+<br />
+[% FOREACH member IN endorsements.keys %]
+<div> [% member %] endorsed by: </div>
+<table width="100%">
+  [% FOREACH endorsement IN endorsements.$member %]
+    <tr>
+      <td>[% endorsement.company %]</td>
+      <td>[% endorsement.url %]</td>
+      <td><input type="submit" value="Remove"/></td>
+    </td>
+  [% END %]
+    <tr>
+      <td><input type="text" name="company" /></td>
+      <td><input type="text" name="url" /></td>
+      <td><input type="submit" value="Add New"/></td>
+    </tr>
+</table>
+[% END %]

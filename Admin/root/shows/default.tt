@@ -4,7 +4,7 @@ $(document).ready(function(){
 
 });
 </script>
-<table>
+<table width="100%">
   <tr>
     <th>Venue</th>  
     <th>Location</th>  
@@ -16,9 +16,9 @@ $(document).ready(function(){
   <tr>
     <td><span class="editable">[% show.venue %]</span></td>
     <td>[% show.city %]</td>
-    <td>[% show.date%]</td>
-    <td><input type="button" name="delete"/></td>
-    <td><input type="button" name="edit"/></td>
+    <td>[% show.date.strftime("%F %T") %]</td>
+    <td><a href="/shows/edit/[% show.id %]">Edit</a></td>
+    <td><a href="/shows/delete/[% show.id %]">Delete</a></td>
   </tr>
   [% END %]
 </table>

@@ -14,6 +14,7 @@
 
   <!-- Included CSS Files -->
   <link rel="stylesheet" href="/static/templates.css">
+  <link rel="stylesheet" href="/static/jdpicker.css" type="text/css" />
 
 </head>
 <body>
@@ -23,6 +24,7 @@ $(document).ready(function(){
 });
 
 </script>
+<script type ="text/javascript" src="/static/jquery.jdpicker.js"></script>
 
   <!-- Header and Nav -->
 
@@ -65,7 +67,6 @@ $(document).ready(function(){
         <li><a href="/posts">Posts</a></li>
         <li><a href="/band">Band</a></li>
         <li><a href="/images">Images</a></li>
-        <li><a href="/gear">Gear</a></li>
         <li><a href="/videos">Videos</a></li>
         <li><a href="/contact">Contact</a></li>
       </ul>

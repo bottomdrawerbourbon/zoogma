@@ -1,4 +1,4 @@
-package Site::Controller::Band;
+package Admin::Controller::Band;
 use Moose;
 use namespace::autoclean;
 
@@ -21,35 +21,24 @@ Catalyst Controller.
 
 =cut
 
-sub index :Path :Args(0) {
+sub default :Path { 
     my ( $self, $c ) = @_;
 
-    $c->stash->{current_view} = 'JSON';
-}
-
-sub json :Local {
-    my ( $self, $c ) = @_;
-    $c->stash->{current_view} = 'JSON';
-
-    my $data = {};
+    $c->stash->{current_view} = 'TT';
+    
     # First load up the endorsements
-    $data->{endorsements}= $c->forward('/band/get_endorsements');
+    $c->stash->{endorsements}= $c->forward('/band/get_endorsements');
 
     # The bio is just a specific post. Look it up by the bio flag
     my $bioRs= $c->model('MyModel::Posts')->search({ bio => 1 }, { order_by => { -desc => 'id' } });
     if( !$bioRs ) {
-        # Not sure what to do here...
-        #$data->{bio} = 1;
-    } else {
-        my $bio = $bioRs->first;
-        $data->{bio}->{post}      = $bio->post;
-        $data->{bio}->{image_url} = $bio->image;
+        $c->stash->{no_configured} = 1;
+        return;
+    } 
 
-        $data->{bio}->{post} =~ s#\r\n#<br \/>#g;
-        $data->{bio}->{post} =~ s#\n#<br \/>#g;
-    }
-
-    $c->stash->{data} = $data;
+    # We know we have at least one. Due to how we do order by, we are going to get the latest one
+    # as the bio
+    $c->stash->{bio} = $bioRs->first;
 }
 
 sub get_endorsements :Local {
@@ -71,11 +60,9 @@ sub get_endorsements :Local {
     return \%endorsements;
 }
 
-
-
 =head1 AUTHOR
 
-Nicholas McCamey
+Nicholas McCamey,,,
 
 =head1 LICENSE
 
