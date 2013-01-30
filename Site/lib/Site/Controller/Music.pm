@@ -27,6 +27,36 @@ sub index :Path :Args(0) {
     $c->stash->{current_view} = 'JSON';
 }
 
+sub discography_json :Path(/music/discography/json) {
+    my ( $self, $c ) = @_;
+    $c->stash->{current_view} = 'JSON';
+
+    my $data = [];
+
+    my $albumRs = $c->model('MyModel::Albums')->search({}, { order_by => { -desc => 'id' }});
+    while( my $album = $albumRs->next ) {
+
+        # Build out the album hash
+        my $album_hash = {};
+        map { $album_hash->{$_} = $album->$_ if defined $album->$_ } qw(album_cover download_url title);
+        # Get the Mon DD, YYYY of the release date
+        $album_hash->{release_date} = $album->release_date->strftime("%B %d, %Y") if $album->release_date;
+
+        my $trackRs = $album->tracks->search({}, { order_by => 'track_number' });
+        while( my $track = $trackRs->next ) {
+            my $href = {};
+            map { $href->{$_} = $track->$_ if $track->$_ } qw(title track_number track_length download_url);
+            push(@{$album_hash->{tracks}}, $href);
+        }
+        
+        # Push all the tracks and the albu on the array 
+        push( @$data, $album_hash );
+        
+    }
+
+    $c->stash->{data} = $data;
+}
+
 sub json :Local {
     my ( $self, $c ) = @_;
     $c->stash->{current_view} = 'JSON';

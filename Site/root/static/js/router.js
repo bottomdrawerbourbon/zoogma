@@ -246,13 +246,47 @@ var gallery_controller = function(){
 
 };
 var music_controller = function(){
-    var newContent = "<div id='music-main'>";
-    newContent +="<h2>Music</h2>";
-    newContent +="<hr style='width:95%'/>";
 
+  $.getJSON('/music/discography/json', function(result) { 
+    var newContent = 
+    "<div id='music-main'>" +
+    "<h2>Discography</h2>" +
+    "<hr style='width:95%'/>";
+    // The outer array will be albums
+    for (var i = 0; i < result.length; i++) {
+        var object = result[i];
+        
+        newContent += '<div class="music-album">';
+        // Get the album data
+        newContent += '<h3>' + object.title + '</h3>';
+        newContent += '<div class="music-album-cover"><img src="' + object.album_cover + '" style="width: 200px" /></div>';
+        newContent += '<div class="music-right-column">';
+        newContent += '<table class="music-tracks">';
+        // Loop over the tracks and populate each row
+        for (var j = 0; j < object.tracks.length; j++) {
+            var track = object.tracks[j];
+            newContent += '<tr>';
+            newContent += '<td class="music-track-number">' + track.track_number + '.</td>';
+            newContent += '<td class="music-track-title">' + track.title + ' <span class="track-length">(' + track.track_length + ')</span></td>';
+            newContent += '</tr>';
+        }
+        newContent += '</table>';
+
+        if( !(object.download_url === undefined) ) {
+            newContent += '<div class="music-download"><a href="' + object.download_url + '">Download</a></div>';
+        }
+        newContent += '<div class="music-release-date"> Released ' + object.release_date+ '</div>';
+
+
+        newContent += '</div>';
+        newContent += '<div style="clear:both"></div>';
+        newContent += '</div>';
+    }
     newContent += "</div>" +
                   "</div>";
+
     page_change(newContent);
+  });
 };
 var store_controller = function(){
     var newContent = "<div id='store-main'>";

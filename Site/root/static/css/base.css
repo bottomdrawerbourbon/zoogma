@@ -188,6 +188,9 @@ HEADER
 #header-nav #header-nav-main ul li#nav-music-link:hover{
   background:url(/static/images/nav_sprites.png) 226px 47px;
 } 
+#header-nav #header-nav-main ul li#nav-music-link.active{
+  background:url(/static/images/nav_sprites.png) 226px 94px;
+}
 #header-nav #header-nav-main ul li#nav-store-link{ 
   width:69px;
   height:48px;
@@ -589,6 +592,25 @@ a img.gallery-image{
   width: 700px;
   min-height: 300px;
 }
+
+.music-album{
+  padding: 40px 10px 20px 40px;
+}
+/* div columns... */
+.music-album-cover{ float: left; }
+.music-right-column { 
+  float: left; 
+  padding-left: 30px; 
+  width: 400px;
+}
+.music-right-column div.music-download { padding-top:20px; }
+.music-release-date { font:'Arial'; font-size:10px; }
+table.music-tracks {}
+table.music-tracks td.music-track-number{ vertical-align:top;}
+table.music-tracks td.music-track-title{ }
+table.music-tracks td.music-track-title span.track-length{font-size:10px; }
+
+
 /** END MUSIC PAGE **/
 /** STORE PAGE **/
 #store-main{
@@ -609,6 +631,10 @@ a img.gallery-image{
   margin-left: 30px;
   width: 700px;
   min-height: 300px;
+}
+div#contact-main h3 {
+  font-size:20px;
+  color: #8E9396;
 }
 /** END CONTACT PAGE **/
 
