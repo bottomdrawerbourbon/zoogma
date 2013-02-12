@@ -4,6 +4,7 @@
 <title>zoogma.net</title>
 
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<meta name="viewport" content="width=1343" />
 
 <!--[if lt IE 9]>
   <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -16,6 +17,7 @@
 <![endif]-->
 
 <!-- Stylesheet includes -->
+<link rel="shortcut icon" href="http://zoogma.bottomdrawerbourbon.com/favicon.ico?v=2" />
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.0/themes/base/jquery-ui.css" />
 <link rel="stylesheet" type="text/css" href="/static/css/base.css" />
 <link rel="stylesheet" type="text/css" href="/static/css/coin-slider-styles.css" />
@@ -41,6 +43,8 @@
 <script type="text/javascript" src="/static/js/lib/fancybox/source/helpers/jquery.fancybox-buttons.js?v=1.0.2"></script>
 <script type="text/javascript" src="/static/js/lib/fancybox/source/helpers/jquery.fancybox-media.js?v=1.0.0"></script>
 <script type="text/javascript" src="/static/js/lib/fancybox/source/helpers/jquery.fancybox-thumbs.js?v=2.0.6"></script>
+<script type="text/javascript" src="/static/js/jquery.twitter.search.js"></script>
+<script type="text/javascript" src="/static/js/jquery.instagram.js"></script>
 <style>
 #slider{
   width: 70px;
@@ -57,6 +61,8 @@
   display: none;
 }
 #slider .ui-slider-range { background: #1a6575; }
+
+
 </style>
 <script type="text/javascript">
 
@@ -123,11 +129,26 @@ $(document).ready(function(){
     // Setup audio player
     setupAudioPlayer();
 
+    $('#twitter3').twitterSearch({
+        term: 'Zoogma',
+        animOut: { opacity: 1 }, // no fade
+        avatar: false,
+        anchors: false,
+        bird: false,
+        colorExterior: '#ddd',
+        colorInterior: 'white',
+        pause:   true,
+        time: false,
+        timeout: 2000
+    });
+
     // Setup scrollbars
     $('#tourdates-content').niceScroll({
         autohidemode: false,
         disableoutline: true,
-        preservenativescrolling: true
+        preservenativescrolling: true,
+        scrollspeed: 100,
+        mousescrollstep: 100
     });
 
     $('#social-fb').click(function() {
@@ -172,9 +193,6 @@ $(document).ready(function(){
     };
     // Not going to make a default for now...
 
-    $(".show-expand").click(function() {
-        alert("HERE");
-    });
 });
 
 </script>
@@ -242,8 +260,9 @@ $(document).ready(function(){
 
   <div id="main">
 
+    <!--<div id="twitter3" title="Mouse away to resume scrolling tweets"></div>-->
     <div id="tourdates">
-      <div id="tourdates-header"></div>
+      <div id="tourdates-header"><span id="tourdates-text1">Spring</span><span id="tourdates-text2">2013</span></div>
       <div id="tourdates-body"></div>
       <div id="tourdates-content">
         <ol>

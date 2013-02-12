@@ -25,7 +25,7 @@ var page_change = function(innerContent, callback) {
 /* Create homepage slide */
 var create_slide = function(img_src, link_url, title, content){
   new_slide = $('<a class="slider-image" href="'+link_url+'" />');
-  new_slide.append('<img class="slider-image" src="'+img_src+'" />');
+  new_slide.append('<img class="slider-image" style="width:300px;" src="'+img_src+'" />');
   new_slide.append('<span><b style="color:white;">'+title+'</b></span>');
   new_slide.append('<div class="slider-content" >'+content+'</div>');
 
@@ -56,7 +56,12 @@ var home_controller = function(){
     // Loop through posts and add them to the slider structure
     for(idx in data.posts){
       //data.posts[idx].image_url = 'http://zoogma.bottomdrawerbourbon.com/media/images/zoog_tour_poster_20130105.jpg';
-      new_content.find('#features').append(create_slide(data.posts[idx].image_url, '/news/json?id='+data.posts[idx].id, data.posts[idx].title, data.posts[idx].post));
+      var title;
+      var post;
+      if( data.posts[idx].post  ) { post  = data.posts[idx].post;  } else { post  = ""; }
+      if( data.posts[idx].title ) { title = data.posts[idx].title; } else { title = ""; }
+
+      new_content.find('#features').append(create_slide(data.posts[idx].image_url, '/news/json?id='+data.posts[idx].id, title, post));
     }
     // Add slider structure to page
     page_change(new_content, function(){
@@ -64,7 +69,9 @@ var home_controller = function(){
         hoverPause: true,
         width: 700,
         opacity: 1,
-        delay: 5000
+        delay: 5000,
+        links: false,
+        navigation: false
       });
     });
   }); 
@@ -72,26 +79,145 @@ var home_controller = function(){
 };
 
 var news_controller = function(){
-  $.getJSON('/news/json', function(result) { 
-    var newContent = 
-    "<div id='news-main'>" +
-    "<h2>News</h2>" +
-    "<hr style='width:95%'/>";
-    for (var i = 0; i < result.posts.length; i++) {
-        newContent += "<div class='news-post'>";
-        var object = result.posts[i];
-        //if( object.image_url ) {
-        //    newContent += "<img src='" + object.image_url + "'/>";
-        //}
-        newContent += "<h3 class='news-heading'>" + object.title + "</h3>"+
-                      "<div class='news-date'>" + object.expanded_date + "</div>" +
-                      "<div class='news-content'>" + object.post + "</div>"+
-                      "<br/>";
-        newContent += "</div>";
-    }
-    newContent += "</div>";
-    page_change(newContent);
-  });
+    // Variables
+    var newsElm    = $('<div id="news-main" />');
+    var twitterElm = $('<div id="news-twitter" style="display:none;" />');
+    var fbElm      = $('<div id="news-facebook" style="display:none;" />');
+    var instaElm   = $('<div id="news-instagram" style="display:none;" />');
+    var postElm    = $('<div id="news-post" />');
+
+    var switchBtn = $('<div id="news-header">' + 
+                      '<span id="news" class="sub-button"><h2 style="display: inline-block;">News</h2></span>' + 
+                      '<span id="twitter" class="not-selected sub-button"><h2 style="display: inline-block;">Twitter</h2></span>' + 
+//                      '<span id="facebook" class="not-selected sub-button"><h2 style="display: inline-block;">Facebook</h2></span>' + 
+//                      '<span id="instagram" class="not-selected sub-button"><h2 style="display: inline-block;">Instagram</h2></span>' + 
+                      '</div><hr style="width:95%"/>');
+
+    // Set up the switch when each span is pressed
+    switchBtn.find('#news').click(function(){
+      switchBtn.find('#twitter').addClass('not-selected');
+//      switchBtn.find('#facebook').addClass('not-selected');
+//      switchBtn.find('#instagram').addClass('not-selected');
+      switchBtn.find('#news').removeClass('not-selected');
+      twitterElm.hide();
+//      fbElm.hide();
+//      instaElm.hide();
+      postElm.show();
+    });
+    switchBtn.find('#twitter').click(function(){
+      switchBtn.find('#twitter').removeClass('not-selected');
+//      switchBtn.find('#facebook').addClass('not-selected');
+//      switchBtn.find('#instagram').addClass('not-selected');
+      switchBtn.find('#news').addClass('not-selected');
+      //gearElm.addClass('not-selected');
+      //bioElm.removeClass('not-selected');
+      twitterElm.show();
+      postElm.hide();
+      $('#twitter3').empty();
+      $('#twitter3').twitterSearch({
+        term: 'Zoogma',
+        animOut: { opacity: 1 }, // no fade
+        avatar: false,
+        anchors: true,
+        bird: false,
+        colorExterior: '#ddd',
+        colorInterior: 'black',
+        pause:   true,
+        time: false,
+        timeout: 2000,
+        title: ''
+      });
+    });
+//    switchBtn.find('#facebook').click(function(){
+//      switchBtn.find('#twitter').addClass('not-selected');
+//      switchBtn.find('#facebook').removeClass('not-selected');
+//      switchBtn.find('#instagram').addClass('not-selected');
+//      switchBtn.find('#news').addClass('not-selected');
+//      twitterElm.hide();
+//      fbElm.show();
+//      instaElm.hide();
+//      postElm.hide();
+//      $('#facebook').socialist({
+//        networks: [
+//            //{name:'linkedin',id:'buddy-media'},
+//            {name:'facebook',id:'zoogmaband'},
+//            //{name:'pinterest',id:'potterybarn'},
+//            //{name:'twitter',id:'in1dotcom'},
+//            //{name:'googleplus',id:'105588557807820541973/posts'},
+//            //{name:'rss',id:' http://feeds.feedburner.com/good/lbvp'},
+//            //{name:'rss',id:'http://www.makebetterwebsites.com/feed/'},
+//            //{name:'craigslist',id:'boo',areaName:'southcoast'},
+//            //{name:'rss',id:'http://www.houzz.com/getGalleries/featured/out-rss'}
+//           ],
+//        isotope:false,
+//        random:false,
+//        fields:['source','heading','text','date','followers','likes']
+//      });
+//
+//    });
+//    switchBtn.find('#instagram').click(function(){
+//      switchBtn.find('#twitter').addClass('not-selected');
+//      switchBtn.find('#facebook').addClass('not-selected');
+//      switchBtn.find('#instagram').removeClass('not-selected');
+//      switchBtn.find('#news').addClass('not-selected');
+//      twitterElm.hide();
+//      fbElm.hide();
+//      instaElm.show();
+//      postElm.hide();
+//    });
+//
+  
+    // Get band data
+    $.getJSON('/news/json', function(result) {
+      var newsContent = '';
+      for (var i = 0; i < result.posts.length; i++) {
+          newsContent += "<div class='news-post'>";
+          var object = result.posts[i];
+          //if( object.image_url ) {
+          //    newContent += "<img src='" + object.image_url + "'/>";
+          //}
+          newsContent += "<h3 class='news-heading'>" + object.title + "</h3>"+
+                         "<div class='news-date'>" + object.expanded_date + "</div>" +
+                         "<div class='news-content'>" + object.post + "</div>"+
+                         "<br/>";
+          newsContent += "</div>";
+      }
+      postElm.append(newsContent);
+    });
+  
+    twitterElm.append('<div id="twitter3" title="Mouse away to resume scrolling tweets"></div>');
+    fbElm.append('<div id="facebook"></div>');
+    instaElm.append('<div id="twitter3" title="Mouse away to resume scrolling tweets"></div>');
+
+    // Add all elements to #band element
+    newsElm.append(switchBtn)
+           .append(twitterElm)
+//           .append(fbElm)
+//           .append(instaElm)
+           .append(postElm);
+  
+    // Add #band element to page
+    page_change(newsElm);
+
+
+//    var newContent = 
+//    "<div id='news-main'>" +
+//    "<h2>News</h2>" +
+//    "<hr style='width:95%'/>";
+//    for (var i = 0; i < result.posts.length; i++) {
+//        newContent += "<div class='news-post'>";
+//        var object = result.posts[i];
+//        //if( object.image_url ) {
+//        //    newContent += "<img src='" + object.image_url + "'/>";
+//        //}
+//        newContent += "<h3 class='news-heading'>" + object.title + "</h3>"+
+//                      "<div class='news-date'>" + object.expanded_date + "</div>" +
+//                      "<div class='news-content'>" + object.post + "</div>"+
+//                      "<br/>";
+//        newContent += "</div>";
+//    }
+//    newContent += "</div>";
+//    page_change(newContent);
 };
 
 var shows_controller = function(){
@@ -135,14 +261,21 @@ var shows_controller = function(){
                 newContent += "<div class='show-dos-price'>Door Price: " + object.ticket_dos_price + "</div>";
          }
 
-         newContent += 
-         "<div class='show-desc-social'>"+
-         "<span class='show-desc-facebook'><img src='/static/images/fb_icon.png'/><a href='" + object.facebook_event_url + "'>Facebook event</a></span>" +
-         " :: " + 
-         "<span class='show-desc-tickets'><img width='15px' src='/static/images/ticket.png'/><a href='" + object.tickets_url + "'>Ticketing info</a></span>" +
-         "</div>"+
-         "</div>"+
-         "</div>";
+         newContent += "<div class='show-desc-social'>";
+         if( !(object.facebook_event_url === undefined) ) {
+                newContent += "<span class='show-desc-facebook'><img src='/static/images/fb_icon.png'/><a href='" + 
+                              object.facebook_event_url + 
+                              "'>Facebook event</a></span>";
+         }
+         if( !(object.tickets_url === undefined) ) {
+                newContent += ":: <span class='show-desc-tickets'><img width='15px' src='/static/images/ticket.png'/><a href='" + 
+                              object.tickets_url + 
+                              "'>Ticketing Info</a></span>";
+         }
+
+         newContent +="</div></div></div>";
+
+
     }
     newContent += "</div>" +
                   "</div>";
@@ -164,7 +297,7 @@ var band_controller = function(){
   var bioElm    = $('<div id="band-info" />');
 
   
-  var switchBtn = $('<div id="band-header"><span id="bio"><h2 style="display: inline-block;">Bio</h2></span><span id="gear" class="not-selected"><h2 style="display: inline-block;">Gear</h2></span></div><hr style="width:95%"/>');
+  var switchBtn = $('<div id="band-header"><span id="bio" class="sub-button"><h2 style="display: inline-block;">Bio</h2></span><span id="gear" class="not-selected sub-button"><h2 style="display: inline-block;">Gear</h2></span></div><hr style="width:95%"/>');
 
   // Set up the switch when each span is pressed
   switchBtn.find('#bio').click(function(){
@@ -188,17 +321,18 @@ var band_controller = function(){
 
     // Build Gear
     // Loop through members
-    for(memberIdx in data.endorsements){
-      var memberElm = $('<div class="member" />');
-          nameElm = $('<span class="member-name">'+memberIdx+'</span> <span class="copy">is endorsed by:</span>'),
-          endorsementElm = $('<div class="member-endorsements" />');
-      for(endorsementIdx in data.endorsements[memberIdx]){
-        endorsementElm.append('<a href="'+data.endorsements[memberIdx][endorsementIdx].url+'">'+data.endorsements[memberIdx][endorsementIdx].company+'</a><span class="comma">, </span>'); 
-      }
-      endorsementElm.find('.comma:last-child').remove();
-      memberElm.append(nameElm).append(endorsementElm);
-      gearElm.append(memberElm);
-    }
+    //for(memberIdx in data.endorsements){
+    //  var memberElm = $('<div class="member" />');
+    //      nameElm = $('<span class="member-name">'+memberIdx+'</span> <span class="copy">is endorsed by:</span>'),
+    //      endorsementElm = $('<div class="member-endorsements" />');
+    //  for(endorsementIdx in data.endorsements[memberIdx]){
+    //    endorsementElm.append('<a href="'+data.endorsements[memberIdx][endorsementIdx].url+'">'+data.endorsements[memberIdx][endorsementIdx].company+'</a><span class="comma">, </span>'); 
+    //  }
+    //  endorsementElm.find('.comma:last-child').remove();
+    //  memberElm.append(nameElm).append(endorsementElm);
+    //  gearElm.append(memberElm);
+    //}
+    gearElm.append('<div>Coming Soon</div>');
 
     // Build Bio
     bioElm.append('<img src="'+data.bio.image_url+'" />')
@@ -292,6 +426,7 @@ var store_controller = function(){
     var newContent = "<div id='store-main'>";
     newContent +="<h2>Store</h2>";
     newContent +="<hr style='width:95%'/>";
+    newContent += "<span style='margin-left:20px'>Coming Soon</span>";
     newContent += "</div>" +
                   "</div>";
     page_change(newContent);
@@ -299,7 +434,10 @@ var store_controller = function(){
 var contact_controller = function(){
     var newContent = "<div id='contact-main'>";
     newContent +="<h2>Contact</h2>";
-    newContent +="<hr style='width:95%'/>";
+    newContent +="<hr style='width:95%'/><br />";
+    newContent += "<div style='margin-left:20px'>Booking: Owen Gray - <a href='mailto:Owen@Madison-House.com'>Owen@Madison-House.com</a> - Madison House Inc, Boulder, CO.</div><br />" +
+                  "<div style='margin-left:20px'>Management: <a href='mailto:mgmt@ZOOGMA.net'>mgmt@ZOOGMA.net</a></div><br />" +
+                  "<div style='margin-left:20px'>Sign Up for our Street Team- Help Promote and win prizes and tickets to our shows!  <a href='mailto:ZOOGMAstreetteam@gmail.com'>ZOOGMAstreetteam@gmail.com</a></div><br />";
     newContent += "</div>" +
                   "</div>";
     page_change(newContent);

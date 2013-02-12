@@ -9,7 +9,7 @@ __PACKAGE__->config(
     connect_info => {
         dsn => 'dbi:mysql:zoogma',
         user => 'root',
-        password => 'nick',
+        password => '422PPNu859y156P',
     }
 );
 

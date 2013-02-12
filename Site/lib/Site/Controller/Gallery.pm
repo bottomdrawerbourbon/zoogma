@@ -20,11 +20,17 @@ Catalyst Controller.
 =head2 index
 
 =cut
-
-sub index :Path :Args(0) {
-    my ( $self, $c ) = @_;
+sub index :Path :Args(0) { my ( $self, $c ) = @_;
 
     $c->stash->{current_view} = 'JSON';
+}
+
+sub json :Local {
+    my ( $self, $c ) = @_;
+    $c->stash->{current_view} = 'JSON';
+
+    my $data = {};
+
 }
 
 
